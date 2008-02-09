@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<!-- ClientDescription.plist -->
+<!-- 
+// Copyright (c) 2006-2008 Simon Fell
+//
+// Permission is hereby granted, free of charge, to any person obtaining a 
+// copy of this software and associated documentation files (the "Software"), 
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+// and/or sell copies of the Software, and to permit persons to whom the 
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included 
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+// THE SOFTWARE.
+// -->
+
+<plist version="1.0">
+<dict>
+	<key>DisplayName</key>
+	<string>SF Cubed</string>
+    <key>ImagePath</key>
+    <string>sf.icns</string>
+	<key>Entities</key>
+	<dict>
+		<key>com.apple.contacts.Contact</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>first name</string>
+			<string>last name</string>
+			<string>job title</string>
+			<string>department</string>
+			<string>notes</string>
+			<string>title</string>
+			<string>birthday</string> 
+			<string>company name</string>
+			<string>email addresses</string>
+			<string>phone numbers</string>
+			<string>street addresses</string>
+			<string>display as company</string>
+		</array>
+		<key>com.apple.contacts.Email Address</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>contact</string>
+			<string>type</string>
+			<string>value</string>
+		</array>
+		<key>com.apple.contacts.Phone Number</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>contact</string>
+			<string>type</string>
+			<string>value</string>
+		</array>
+		<key>com.apple.contacts.Street Address</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>contact</string>
+			<string>street</string>
+			<string>city</string>
+			<string>state</string>
+			<string>country</string>
+			<string>postal code</string>
+			<string>type</string>
+		</array>
+		<key>com.apple.calendars.Calendar</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>title</string>
+	    	<string>tasks</string> 
+			<string>events</string> 
+			<string>notes</string>
+			<string>read only</string>
+		</array>
+		<key>com.apple.calendars.Task</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>calendar</string>
+			<string>description</string>
+			<string>due date</string>
+			<string>due date is date only</string>
+			<string>completion date</string>
+			<string>priority</string>
+			<string>summary</string>
+			<string>completion date</string>
+			<string>url</string>
+		</array>
+		<key>com.apple.calendars.Event</key>
+		<array>
+			<string>com.apple.syncservices.RecordEntityName</string>
+			<string>calendar</string>
+			<string>summary</string>
+			<string>description</string>
+			<string>all day</string>
+			<string>url</string>
+			<string>location</string>
+			<string>start date</string>
+			<string>end date</string>
+		</array> 
+	</dict>
+	<key>Type</key>
+	<string>server</string>
+<!--
+	<key>SyncsWith</key>
+	<dict>
+		<key>SyncAlertTypes</key>
+		<array>
+			<string>app</string>
+			<string>device</string>
+			<string>server</string>
+		</array>
+	</dict>
+-->
+</dict>
+</plist>

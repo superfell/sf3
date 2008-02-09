@@ -1,0 +1,57 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = RoundedBox; LANGUAGE = ObjC; SUPERCLASS = NSBox; }, 
+        {
+            ACTIONS = {
+                closePrefsWindow = id; 
+                closeWelcome = id; 
+                launchSfdcInBrowser = id; 
+                login = id; 
+                showLogin = id; 
+                showPrefsWindow = id; 
+                syncNow = id; 
+                toggleLogDrawer = id; 
+                triggerSyncNow = id; 
+                unregisterClient = id; 
+            }; 
+            CLASS = SFCubed; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                launchSfdc = NSMenuItem; 
+                logDrawer = NSDrawer; 
+                logTextView = NSTextView; 
+                mainBox = RoundedBox; 
+                myWindow = NSWindow; 
+                prefsWindow = NSWindow; 
+                progress = NSProgressIndicator; 
+                showWelcomeCheckbox = NSButton; 
+                statusText1 = NSTextField; 
+                statusText2 = NSTextField; 
+                syncNowMenuItem = NSMenuItem; 
+                welcomeWindow = NSWindow; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {addNewServer = id; }; 
+            CLASS = SFLogin; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                newServer = NSWindow; 
+                password = NSSecureTextField; 
+                progress = NSProgressIndicator; 
+                username = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = SFPrefs; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {checkForUpdates = id; }; 
+            CLASS = SUUpdater; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
