@@ -25,6 +25,7 @@
 		F422B36B0AA173B800A7A7D5 /* SyncFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F422B36A0AA173B800A7A7D5 /* SyncFilters.m */; };
 		F42A02AE0B58A9F600C8D9D5 /* minus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AC0B58A9F600C8D9D5 /* minus-8.png */; };
 		F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AD0B58A9F600C8D9D5 /* plus-8.png */; };
+		F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = F4415B130D5FD09600A69CCB /* deleteAccumulator.m */; };
 		F44604DD0AA3EE4C0036D487 /* SFPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F44604DC0AA3EE4C0036D487 /* SFPrefs.m */; };
 		F44ADABD0C337BB20031F832 /* ActivityMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F44ADABB0C337BB20031F832 /* ActivityMapper.m */; };
 		F458C04F0B6B015C00084F43 /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F458C04B0B6B015C00084F43 /* ZKPicklistEntry.m */; };
@@ -32,7 +33,6 @@
 		F465A5630AAFD4EA004AC796 /* FieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F465A5620AAFD4EA004AC796 /* FieldMappingInfo.m */; };
 		F467A0D70AFD757300F0C9E8 /* sf3_64.png in Resources */ = {isa = PBXBuildFile; fileRef = F467A0D50AFD757300F0C9E8 /* sf3_64.png */; };
 		F467A0EB0AFD83C200F0C9E8 /* sf3_64b.png in Resources */ = {isa = PBXBuildFile; fileRef = F467A0EA0AFD83C200F0C9E8 /* sf3_64b.png */; };
-		F46A31D50A9C1498002D6696 /* changeAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A31D40A9C1498002D6696 /* changeAccumulator.m */; };
 		F46A31EB0A9C1EF4002D6696 /* AccItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A31EA0A9C1EF4002D6696 /* AccItem.m */; };
 		F46A32D80A9CACF2002D6696 /* BaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A32D70A9CACF2002D6696 /* BaseMapper.m */; };
 		F46A32DB0A9CAD69002D6696 /* ContactMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A32DA0A9CAD69002D6696 /* ContactMapper.m */; };
@@ -115,6 +115,8 @@
 		F422B36A0AA173B800A7A7D5 /* SyncFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncFilters.m; sourceTree = "<group>"; };
 		F42A02AC0B58A9F600C8D9D5 /* minus-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "minus-8.png"; path = "../common/minus-8.png"; sourceTree = SOURCE_ROOT; };
 		F42A02AD0B58A9F600C8D9D5 /* plus-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus-8.png"; path = "../common/plus-8.png"; sourceTree = SOURCE_ROOT; };
+		F4415B120D5FD09600A69CCB /* deleteAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteAccumulator.h; sourceTree = "<group>"; };
+		F4415B130D5FD09600A69CCB /* deleteAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteAccumulator.m; sourceTree = "<group>"; };
 		F44604DB0AA3EE4C0036D487 /* SFPrefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFPrefs.h; sourceTree = "<group>"; };
 		F44604DC0AA3EE4C0036D487 /* SFPrefs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SFPrefs.m; sourceTree = "<group>"; };
 		F44ADABA0C337BB20031F832 /* ActivityMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMapper.h; sourceTree = "<group>"; };
@@ -127,8 +129,6 @@
 		F465A5620AAFD4EA004AC796 /* FieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMappingInfo.m; sourceTree = "<group>"; };
 		F467A0D50AFD757300F0C9E8 /* sf3_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sf3_64.png; sourceTree = "<group>"; };
 		F467A0EA0AFD83C200F0C9E8 /* sf3_64b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sf3_64b.png; sourceTree = "<group>"; };
-		F46A31D30A9C1498002D6696 /* changeAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = changeAccumulator.h; sourceTree = "<group>"; };
-		F46A31D40A9C1498002D6696 /* changeAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = changeAccumulator.m; sourceTree = "<group>"; };
 		F46A31E90A9C1EF4002D6696 /* AccItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccItem.h; sourceTree = "<group>"; };
 		F46A31EA0A9C1EF4002D6696 /* AccItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccItem.m; sourceTree = "<group>"; };
 		F46A32D60A9CACF2002D6696 /* BaseMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMapper.h; sourceTree = "<group>"; };
@@ -207,8 +207,8 @@
 			children = (
 				F491205B0A9782F4007F6F32 /* SFCubed.h */,
 				F491205A0A9782F4007F6F32 /* SFCubed.m */,
-				F46A31D30A9C1498002D6696 /* changeAccumulator.h */,
-				F46A31D40A9C1498002D6696 /* changeAccumulator.m */,
+				F4415B120D5FD09600A69CCB /* deleteAccumulator.h */,
+				F4415B130D5FD09600A69CCB /* deleteAccumulator.m */,
 				F46A31E90A9C1EF4002D6696 /* AccItem.h */,
 				F46A31EA0A9C1EF4002D6696 /* AccItem.m */,
 				F46A32E90A9CB549002D6696 /* Constants.h */,
@@ -467,7 +467,6 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				F491205C0A9782F4007F6F32 /* SFCubed.m in Sources */,
-				F46A31D50A9C1498002D6696 /* changeAccumulator.m in Sources */,
 				F46A31EB0A9C1EF4002D6696 /* AccItem.m in Sources */,
 				F46A32D80A9CACF2002D6696 /* BaseMapper.m in Sources */,
 				F46A32DB0A9CAD69002D6696 /* ContactMapper.m in Sources */,
@@ -506,6 +505,7 @@
 				F44ADABD0C337BB20031F832 /* ActivityMapper.m in Sources */,
 				F40B3A600C4B27C70014E88C /* ZKLoginController.m in Sources */,
 				F40B3A6B0C4B28190014E88C /* credential.m in Sources */,
+				F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,7 +41,7 @@
 
 - (NSEnumerator *)objectEnumerator;
 - (UInt32)count;
-- (void)setAccumulator:(ChangeAccumulator *)acc;
+- (void)setAccumulator:(DeleteAccumulator *)acc;
 - (void)pushFinished:(NSString *)userId;
 
 @end

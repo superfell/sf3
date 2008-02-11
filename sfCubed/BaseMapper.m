@@ -91,13 +91,13 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // setup
 //////////////////////////////////////////////////////////////////////////////////////
-- (void)setSession:(ISyncSession *)ss
-{
+- (void)setSession:(ISyncSession *)ss {
 	session = [ss retain];
 }
 
-- (void)setAccumulator:(ChangeAccumulator *)acc
-{
+- (void)setAccumulator:(DeleteAccumulator *)acc {
+	if (acc == accumulator) return;
+	[accumulator release];
 	accumulator = [acc retain];
 }
 

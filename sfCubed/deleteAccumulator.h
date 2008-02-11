@@ -24,28 +24,15 @@
 #import "zkSforceClient.h"
 #import "zkSObject.h"
 
-@interface ChangeAccumulator : NSObject {
-
-	NSMutableArray 	*changes;
+@interface DeleteAccumulator : NSObject {
+	NSMutableArray 	*deletes;
 	ISyncSession 	*session;
 	ZKSforceClient 	*sforce;	
-	char 			mode;
 }
 
-- (ChangeAccumulator *)initWithSession:(ISyncSession *)session sforce:(ZKSforceClient *)sforce;
+- (id)initWithSession:(ISyncSession *)session sforce:(ZKSforceClient *)sforce;
 
-- (void)delete:(NSString *)sfId;
-- (void)create:(ZKSObject *)o originalId:(NSString *)oid;
-- (void)update:(ZKSObject *)o;
-- (void)updateWithIds:(ZKSObject *)o originalId:(NSString *)syncId newRecordId:(NSString *)newId;
-
-- (void)add:(NSObject *)item mode:(char)m;
+- (void)enqueueDelete:(NSString *)sfId;
 - (void)flush;
-
-- (void)doDeletes;
-- (void)doCreates;
-- (void)doUpdates;
-
-- (NSArray *)makeSObjectArray;
 @end
 

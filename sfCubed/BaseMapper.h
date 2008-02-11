@@ -23,7 +23,7 @@
 #import <SyncServices/SyncServices.h>
 #import "zkSforceClient.h"
 #import "zkDescribeSObject.h"
-#import "ChangeAccumulator.h"
+#import "deleteAccumulator.h"
 
 // where we at ?
 typedef enum SyncMapperPhase {
@@ -39,7 +39,7 @@ typedef enum SyncMapperPhase {
 	NSDictionary		*fieldMapping;
 	ISyncSession		*session;
 	ZKSforceClient		*sforce;
-	ChangeAccumulator	*accumulator;
+	DeleteAccumulator	*accumulator;
 	
 	NSMutableDictionary *pulledEntities;
 	NSMutableDictionary *pushedSObjects;
@@ -49,7 +49,7 @@ typedef enum SyncMapperPhase {
 
 // init
 - (void)setSession:(ISyncSession *)ss;
-- (void)setAccumulator:(ChangeAccumulator *)acc;
+- (void)setAccumulator:(DeleteAccumulator *)acc;
 
 // what you implement in a subclass
 

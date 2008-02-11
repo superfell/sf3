@@ -31,6 +31,7 @@
 #import "Mappers.h"
 #import "BaseMapper.h"
 #import "EventMapper.h"
+#import "deleteAccumulator.h"
 #import <ExceptionHandling/NSExceptionHandler.h>
 
 
@@ -324,7 +325,7 @@ static const int SFC_GO = 42;
 	// pull
 	[self setStatus:@"Sending local changes to Salesforce.com"];
 	[self setStatus2:@""];
-	ChangeAccumulator * acc = [[ChangeAccumulator alloc] initWithSession:session sforce:sforce];
+	DeleteAccumulator * acc = [[DeleteAccumulator alloc] initWithSession:session sforce:sforce];
 	[mappers setAccumulator:acc];
 		
 	BaseMapper * mapper;
@@ -370,7 +371,7 @@ static const int SFC_GO = 42;
 	[acc release];
 }
 
-- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(ChangeAccumulator *)acc mapper:(BaseMapper *)mapper
+- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper
 {
 	if ([change type] == ISyncChangeTypeDelete)
 	{
@@ -383,7 +384,7 @@ static const int SFC_GO = 42;
 			[mapper relationshipUpdate:change];			
 		} else {
 			// regular delete
-			[acc delete:[change recordIdentifier]];
+			[acc enqueueDelete:[change recordIdentifier]];
 		}
 	} else {
 		NSString * entity = [[change record] objectForKey:key_RecordEntityName];

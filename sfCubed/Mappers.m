@@ -84,7 +84,7 @@
 	[mappers makeObjectsPerformSelector:@selector(setSession:) withObject:syncSession];
 }
 
-- (void)setAccumulator:(ChangeAccumulator *)acc;
+- (void)setAccumulator:(DeleteAccumulator *)acc;
 {
 	[mappers makeObjectsPerformSelector:@selector(setAccumulator:) withObject:acc];
 }

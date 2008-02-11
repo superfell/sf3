@@ -31,11 +31,12 @@
 #import <SyncServices/SyncServices.h>
 #import "zkSforceClient.h"
 #import "zkSObject.h"
-#import "ChangeAccumulator.h"
 #import "Mappers.h"
 #import "SFPrefs.h"
 #import "RoundedBox.h"
 #import "ZKLoginController.h"
+
+@class DeleteAccumulator;
 
 @interface SFCubed : NSObject
 {
@@ -86,7 +87,7 @@
 - (void)performSync;
 - (void)slowSyncWithMapper:(BaseMapper *)mapper mapperIndex:(int)idx;
 - (void)pullChanges;
-- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(ChangeAccumulator *)acc mapper:(BaseMapper *)mapper;
+- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper;
 
 - (ISyncClient *)registerClient;
 - (IBAction)unregisterClient:(id)sender;
