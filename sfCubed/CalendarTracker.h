@@ -30,17 +30,14 @@
 	NSMutableArray *tasks;
 	NSString	   *calendarId;
 	NSString	   *userId;
-	int				currentIdSuffix;
 }
 
 -(id)initForUserId:(NSString *)uid;
+
 -(void)addEvent:(NSString *)eventId;
 -(void)addTask:(NSString *)taskId;
--(void)incrementIdSuffix;
 - (NSString *)calendarId;
-- (NSString *)calendarIdOrDefault;
-- (void)setCalendarId:(NSString *)aCalendarId;
 
--(NSDictionary *)asSyncObjectUsingSession:(ISyncSession *)s;
+-(NSDictionary *)asSyncObjectForSession:(ISyncSession *)s;
 
 @end

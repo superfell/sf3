@@ -85,7 +85,7 @@
 - (NSDictionary *)makeSyncRecord:(ZKSObject *)src
 {
 	NSMutableDictionary *event = [self mapFromSObject:src toAppleEntityName:Entity_Event];
-	[event setObject:[NSArray arrayWithObject:[calendarTracker calendarIdOrDefault]] forKey:@"calendar"];
+	[event setObject:[NSArray arrayWithObject:[calendarTracker calendarId]] forKey:@"calendar"];
 	return event;
 }
 
@@ -94,7 +94,7 @@
 	[super pulledChange:change entityName:entity];
 	if ([entity isEqualToString:Entity_Event]) {
 		// remember to only look at things on our calendar
-		if ([[[change record] objectForKey:@"calendar"] containsObject:[calendarTracker calendarIdOrDefault]])
+		if ([[[change record] objectForKey:@"calendar"] containsObject:[calendarTracker calendarId]])
 			[self topLevelEntityUpdate:change];
 		else
 			[session clientRefusedChangesForRecordWithIdentifier:[change recordIdentifier]];		

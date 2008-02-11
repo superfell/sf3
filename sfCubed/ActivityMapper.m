@@ -45,13 +45,11 @@
 
 - (void)pulledChange:(ISyncChange *)change entityName:(NSString *)entity {
 	if ([entity isEqualToString:Entity_Calendar]) {
-		NSLog(@"title:%@ calId:%@ recordId:%@", [[change record] objectForKey:@"title"], [calendarTracker calendarIdOrDefault], [change recordIdentifier]);
-		BOOL hasMatchingId = [[change recordIdentifier] isEqualToString:[calendarTracker calendarIdOrDefault]]; 
+		NSLog(@"title:%@ calId:%@ recordId:%@", [[change record] objectForKey:@"title"], [calendarTracker calendarId], [change recordIdentifier]);
+		BOOL hasMatchingId = [[change recordIdentifier] isEqualToString:[calendarTracker calendarId]]; 
 		if (hasMatchingId || ([[[change record] objectForKey:@"title"] isEqualToString:@"Salesforce.com"])) {
 			NSLog(@"Task Mapper accepting calendar : %@ : %@", [change recordIdentifier], [[change record] objectForKey:@"title"]);
-			if (!hasMatchingId) 
-				[calendarTracker incrementIdSuffix];
-			[session clientAcceptedChangesForRecordWithIdentifier:[change recordIdentifier] formattedRecord:nil newRecordIdentifier:[calendarTracker calendarIdOrDefault]];
+			[session clientAcceptedChangesForRecordWithIdentifier:[change recordIdentifier] formattedRecord:nil newRecordIdentifier:[calendarTracker calendarId]];
 		} else {
 			NSLog(@"Task Mapper rejecting calendar : %@", [[change record] objectForKey:@"title"]);
 			[session clientRefusedChangesForRecordWithIdentifier:[change recordIdentifier]];

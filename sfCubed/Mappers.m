@@ -52,10 +52,10 @@
 
 // when we're done pushing, we need to push the calendar entity if needed
 - (void)pushFinished:(NSString *)userId {
-	NSDictionary *cal = [calendar asSyncObjectUsingSession:session];
+	NSDictionary *cal = [calendar asSyncObjectForSession:session];
 	NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
 	if ([d boolForKey:PREF_SYNC_TASKS] || [d boolForKey:PREF_SYNC_EVENTS])
-		[session pushChangesFromRecord:cal withIdentifier:[calendar calendarIdOrDefault]];
+		[session pushChangesFromRecord:cal withIdentifier:[calendar calendarId]];
 }
 
 - (NSArray *)accumulate:(SEL)sel {

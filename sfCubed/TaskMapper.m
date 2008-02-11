@@ -80,7 +80,7 @@
 // takes the field data from an SObject, and maps it into a sync record dictionary
 - (NSDictionary *)makeSyncRecord:(ZKSObject *)src {
 	NSMutableDictionary * task = [self mapFromSObject:src toAppleEntityName:Entity_Task];
-	[task setObject:[NSArray arrayWithObject:[calendarTracker calendarIdOrDefault]] forKey:@"calendar"];
+	[task setObject:[NSArray arrayWithObject:[calendarTracker calendarId]] forKey:@"calendar"];
 	[task setObject:[NSNumber numberWithBool:YES] forKey:@"due date is date only"];
 	return task;
 }
@@ -91,7 +91,7 @@
 	if ([entity isEqualToString:Entity_Task]) {
 		// make sure we're only looking at things that are on our calendar
 		// perhaps this should be a filter ?
-		if ([[[change record] objectForKey:@"calendar"] containsObject:[calendarTracker calendarIdOrDefault]])
+		if ([[[change record] objectForKey:@"calendar"] containsObject:[calendarTracker calendarId]])
 			[self topLevelEntityUpdate:change];
 		else
 			[session clientRefusedChangesForRecordWithIdentifier:[change recordIdentifier]];		

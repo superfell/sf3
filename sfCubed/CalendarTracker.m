@@ -29,7 +29,10 @@
 	events = [[NSMutableArray alloc] init];
 	tasks  = [[NSMutableArray alloc] init];
 	userId = [uid copy];
-	currentIdSuffix = [[[NSUserDefaults standardUserDefaults] objectForKey:PREF_CALENDAR_SUFFIX] intValue];
+	calendarId = [[NSString stringWithFormat:@"%@-Calendar", userId] retain];
+
+	// we don't care about calendar suffix anymore, remove it from the user prefs
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:PREF_CALENDAR_SUFFIX];
 	return self;
 }
 
@@ -49,7 +52,11 @@
 	[tasks addObject:taskId];
 }
 
--(NSDictionary *)asSyncObjectUsingSession:(ISyncSession *)s {
+- (NSString *)calendarId {
+	return calendarId;
+}
+
+-(NSDictionary *)asSyncObjectForSession:(ISyncSession *)s {
 	NSMutableDictionary *cal = [NSMutableDictionary dictionary];
 	[cal setObject:Entity_Calendar forKey:key_RecordEntityName];
 	[cal setObject:@"This calendar automatically created by SfCubed" forKey:@"notes"];
@@ -60,7 +67,7 @@
 	NSArray *theEvents = events;
 	if ([tasks count] == 0 || [events count] == 0) {
 		ISyncRecordSnapshot *ss = [s snapshotOfRecordsInTruth];
-		NSString *recordId = [self calendarIdOrDefault];
+		NSString *recordId = [self calendarId];
 		truth = [[ss recordsWithIdentifiers:[NSArray arrayWithObject:recordId]] objectForKey:recordId];		
 		if ([tasks count] == 0)
 			theTasks = [truth objectForKey:@"tasks"];
@@ -72,30 +79,6 @@
 	if ([theEvents count] > 0)
 		[cal setObject:theEvents forKey:@"events"];
 	return cal;
-}
-
-- (NSString *)calendarId {
-	return calendarId;
-}
-
-- (void)setCalendarId:(NSString *)aCalendarId {
-	aCalendarId = [aCalendarId copy];
-	[calendarId release];
-	calendarId = aCalendarId;
-}
-
-- (NSString *)calendarIdOrDefault {
-	if (calendarId != nil) return calendarId;
-//	NSString *cid = [NSString stringWithFormat:@"%@-Calendar-%d", userId, currentIdSuffix];
-	NSString *cid = [NSString stringWithFormat:@"%@-Calendar", userId];
-	[self setCalendarId:cid];
-	return cid;
-}
-
--(void)incrementIdSuffix {
-	currentIdSuffix++;
-	[self setCalendarId:nil];
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:currentIdSuffix] forKey:PREF_CALENDAR_SUFFIX];
 }
 
 @end
