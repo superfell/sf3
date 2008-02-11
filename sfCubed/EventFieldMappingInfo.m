@@ -22,6 +22,16 @@
 #import "EventFieldMappingInfo.h"
 #import "zkSObject.h"
 
+@interface ZKSObject (ActivityDateTime)
+-(NSCalendarDate *)activityStart;
+@end
+
+@implementation ZKSObject (ActivityDateTime)
+-(NSCalendarDate *)activityStart {
+	return [self boolValue:@"IsAllDayEvent"] ? [self dateValue:@"ActivityDate"] : [self dateTimeValue:@"ActivityDateTime"];
+}
+@end
+
 // maps between activityDateTime + DurationInMinutes on sfdc side, to end date on the apple side
 @implementation DurationFieldMappingInfo
 
@@ -32,9 +42,10 @@
 // returns the value from the sfdcName field converted to the syncFieldType type
 // subclasses can override this and do more interesting stuff
 - (id)typedValue:(ZKSObject *)so {
-	NSCalendarDate * startDate = [so dateTimeValue:@"ActivityDateTime"];
+	NSCalendarDate * startDate = [so activityStart];
 	int duration = [so intValue:@"DurationInMinutes"];
-	return [startDate dateByAddingYears:0 months:0 days:0 hours:0 minutes:duration seconds:0];
+	NSCalendarDate *ed = [startDate dateByAddingYears:0 months:0 days:0 hours:0 minutes:duration seconds:0];
+	return ed;
 }
 
 // updates the value in the SObject with the relevant value(s) from the syncData
@@ -43,7 +54,6 @@
 	NSCalendarDate *end =   [syncData objectForKey:@"end date"];
 	long seconds = (long)[end timeIntervalSinceDate:start];
 	NSString *dur = [NSString stringWithFormat:@"%d", seconds / 60];
-	NSLog(@"start=%@ end=%@ seconds=%d duration=%@", start, end, seconds, dur);
 	[s setFieldValue:dur field:@"DurationInMinutes"];
 }
 
@@ -56,8 +66,7 @@
 }
 
 - (id)typedValue:(ZKSObject *)so {
-	BOOL isAllDay = [so boolValue:@"IsAllDayEvent"];
-	return isAllDay ? [so dateValue:@"ActivityDate"] : [so dateTimeValue:@"ActivityDateTime"];
+	return [so activityStart];
 }
 
 - (void)mapFromApple:(NSDictionary *)syncData toSObject:(ZKSObject *)s {

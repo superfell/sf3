@@ -215,7 +215,7 @@ static const int SFC_GO = 42;
 
 	// mappers
 	[sforce setUpdateMru:YES];
-	mappers = [[[Mappers alloc] initForUserId:[[sforce currentUserInfo] userId]] autorelease];
+	mappers = [[Mappers alloc] initForUserId:[[sforce currentUserInfo] userId]];
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_CONTACTS])
 		[mappers addMapper:[[[ContactMapper alloc] initMapper:sforce] autorelease]];
 
@@ -229,6 +229,7 @@ static const int SFC_GO = 42;
 	// todo, should we be adding the mappers, or should Mappers know the list of mappers ?
 	if ([mappers count] == 0) {
 		[self setStatus:@"Nothing configured to sync!"];
+		[mappers release];
 		return;
 	}
 	
@@ -246,6 +247,7 @@ static const int SFC_GO = 42;
 
 	if (!session) {
 		[self setStatus:@"unable to start a sync session"];
+		[mappers release];
 		return;
 	}
 	[mappers setSession:session];
@@ -278,6 +280,8 @@ static const int SFC_GO = 42;
 	// all done
 	[session clientCommittedAcceptedChanges];
 	[session finishSyncing];
+	[mappers release];
+	mappers = nil;
 	session = nil;
 	[self registerForOtherClients];
 	if ([[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL] > 0)
