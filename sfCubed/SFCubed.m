@@ -21,29 +21,35 @@
 
 #import "SFCubed.h"
 #import "zkSforceClient.h"
-#import "zkSObject.h"
-#import "zkSaveResult.h"
-#import "zkUserInfo.h"
-#import "zkQueryResult.h"
-#import "Constants.h"
-#import "TaskMapper.h"
-#import "ContactMapper.h"
-#import "Mappers.h"
-#import "BaseMapper.h"
-#import "EventMapper.h"
-#import "deleteAccumulator.h"
-#import <ExceptionHandling/NSExceptionHandler.h>
 
+#import "Constants.h"
+#import <ExceptionHandling/NSExceptionHandler.h>
+#import "SyncRunner.h"
 
 static const int SFC_QUIT = -1;
 static const int SFC_GO = 42;
 
+@interface SFCubed (private)
+-(void)setProgress:(double)p;
+-(void)setStatus:(NSString *)newStatus;
+-(void)setStatus2:(NSString *)newStatus;
+-(double)progress;
+-(NSString *)status;
+-(NSString *)status2;
+@end 
+
 @implementation SFCubed
+
++(void)initialize {
+	[SFCubed exposeBinding:@"status"];
+	[SFCubed exposeBinding:@"status2"];
+	[SFCubed exposeBinding:@"progress"];
+}
 
 - (void)awakeFromNib
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkShowWelcome:) name:NSApplicationDidFinishLaunchingNotification object:nil];
-	[progress setUsesThreadedAnimation:YES];
+	[progressIndicator setUsesThreadedAnimation:YES];
 	[syncNowMenuItem setEnabled:FALSE];
 	[launchSfdc setEnabled:FALSE];
 	registeredWithOtherClients = NO;
@@ -120,19 +126,19 @@ static const int SFC_GO = 42;
 
 - (IBAction)showLogin:(id)sender
 {
-	if (login == nil) {
+	if (login == nil) 
 		login = [[ZKLoginController alloc] init];
-	}
+	
 	if (![sforce loggedIn])
 		[login showLoginSheet:myWindow target:self selector:@selector(login:)];
 	else 
 		[self triggerSyncNow:self];
 }
 
-- (IBAction)login:(ZKSforceClient *)authenticatedClientStub
-{
-	[sforce release];
+- (IBAction)login:(ZKSforceClient *)authenticatedClientStub {
+	ZKSforceClient *t = sforce;
 	sforce = [authenticatedClientStub retain];
+	[t release];
 	ZKDescribeSObject *d = [sforce describeSObject:@"Task"];
 	NSString *sUrl = [d urlNew];
 	NSURL *url = [NSURL URLWithString:sUrl];
@@ -147,27 +153,54 @@ static const int SFC_GO = 42;
 	[[NSWorkspace sharedWorkspace] openURL:fd];
 }
 
-- (IBAction)triggerSyncNow:(id)sender
-{
+- (IBAction)triggerSyncNow:(id)sender {
 	[trickleTimer invalidate];
 	[trickleTimer release];
 	trickleTimer = nil;
 	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(syncNow:) userInfo:nil repeats:NO];
 }
 
+- (BOOL)performSync {
+	SyncRunner *runner = [[SyncRunner alloc] initWithSforceSession:sforce];
+	[self bind:@"status" toObject:runner withKeyPath:@"status" options:nil];
+	[self bind:@"status2" toObject:runner withKeyPath:@"status2" options:nil];
+	[self bind:@"progress" toObject:runner withKeyPath:@"progress" options:nil];
+	BOOL ok = NO;
+	@try {
+		ok = [runner performSync];
+	} @finally {
+		[self unbind:@"status"];
+		[self unbind:@"status2"];
+		[self unbind:@"progress"];
+		[runner release];
+	}
+	if (ok) {
+		[self registerForOtherClients];
+		if ([[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL] > 0)
+			[self setStatus:@"Syncronization complete, auto sync enabled"];
+		else
+			[self setStatus:@"Syncronization complete"];
+	
+		[self setStatus2:@""];	
+		[[NSUserDefaults standardUserDefaults] setObject:[NSCalendarDate date] forKey:PREF_LAST_SYNC_DATE];
+		[self showLastSyncStatus];
+	}
+	return ok;
+}
+
 - (IBAction)syncNow:(id)sender
 {
 	NSString *oldTitle = [mainBox title];
+	[syncNowMenuItem setEnabled:FALSE];
 	[mainBox setTitle:@"Synchronizing ..."];
 	[mainBox display];
-	[syncNowMenuItem setEnabled:FALSE];
 	[self setStatus:@"Starting synchronization...."];
-	[progress setDoubleValue:1];
-	[progress startAnimation:self];
-	[progress display];
-	
+	[progressIndicator setDoubleValue:1];
+	[progressIndicator startAnimation:self];
+	[progressIndicator display];
+	BOOL syncCompleted = NO;
 	@try {
-		[self performSync];
+		syncCompleted = [self performSync];
 	}
 	@catch (NSException *ex) {
 		[self printStackTrace:ex];
@@ -179,119 +212,19 @@ static const int SFC_GO = 42;
 		[alert release];
 		[self setStatus:[ex reason]];
 	}
-
-	if (session != nil)
-		[session cancelSyncing];
 		
-	[progress stopAnimation:self];
-	[progress setDoubleValue:0];
-	[progress display];
+	[progressIndicator stopAnimation:self];
+	[progressIndicator setDoubleValue:0];
+	[progressIndicator display];
 	
 	int interval = [[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL];
-	if (interval > 0) {
+	if (syncCompleted && (interval > 0)) {
 		trickleTimer = [NSTimer scheduledTimerWithTimeInterval:60*interval target:self selector:@selector(triggerSyncNow:) userInfo:nil repeats:NO];
 		[trickleTimer retain];
 	}
 	[syncNowMenuItem setEnabled:TRUE];
 	[mainBox setTitle:oldTitle];
 	[mainBox display];
-}
-
-- (void)performSync
-{
-	// check if we can sync
-    if ([[ISyncManager sharedManager] isEnabled] == NO) {
-		// todo, register for notification of sync getting enabled
-		[self setStatus:@"Syncronization Manager is disable (enable from iSync)"];
-		return;
-	}
-	
-	// get a sync client
-	ISyncClient * syncClient = [self registerClient];
-	if (!syncClient) {
-		[self setStatus:@"Unable to register the SfCubed sync client"];
-		return;
-	}
-
-	// mappers
-	[sforce setUpdateMru:YES];
-	mappers = [[Mappers alloc] initForUserId:[[sforce currentUserInfo] userId]];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_CONTACTS])
-		[mappers addMapper:[[[ContactMapper alloc] initMapper:sforce] autorelease]];
-
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_TASKS])
-		[mappers addMapper:[[[TaskMapper alloc]    initMapper:sforce] autorelease]];
-	
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_EVENTS])
-		[mappers addMapper:[[[EventMapper alloc]	initMapper:sforce] autorelease]];
-		
-	// todo, add additional mappers here
-	// todo, should we be adding the mappers, or should Mappers know the list of mappers ?
-	if ([mappers count] == 0) {
-		[self setStatus:@"Nothing configured to sync!"];
-		[mappers release];
-		return;
-	}
-	
-	// things we want to sync
-	NSArray *entityNames = [mappers entityNames];
-	NSArray *syncFilters = [mappers filters];
-	
-	// register the filters
-	[syncClient setFilters:syncFilters];
-		
-	// start a sync session
-	session = [ISyncSession beginSessionWithClient:syncClient
-                entityNames:entityNames
-                beforeDate:[NSDate dateWithTimeIntervalSinceNow:25]];
-
-	if (!session) {
-		[self setStatus:@"unable to start a sync session"];
-		[mappers release];
-		return;
-	}
-	[mappers setSession:session];
-	
-	// slow sync always right now
-	[session clientWantsToPushAllRecordsForEntityNames:entityNames];	
-	// push 
-	[progress setDoubleValue:5];
-	int mapperIdx = 1;
-	BaseMapper * mapper;
-	NSEnumerator *e = [mappers objectEnumerator];
-	while (mapper = [e nextObject]) {
-		if ([session shouldPushChangesForEntityName:[mapper primaryMacEntityName]]) {
-			// Push records for entityName
-			if ([session shouldPushAllRecordsForEntityName:[mapper primaryMacEntityName]]) {
-				// Slow sync entityName
-				[self slowSyncWithMapper:mapper mapperIndex:mapperIdx];
-			} else {
-				// Fast sync entityName
-			}
-		}
-		mapperIdx++;
-    }
-	// push finished
-	[mappers pushFinished:[[sforce currentUserInfo] userId]];
-	
-	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate dateWithTimeIntervalSinceNow:30]]) {
-		[self pullChanges];
-	}
-	// all done
-	[session clientCommittedAcceptedChanges];
-	[session finishSyncing];
-	[mappers release];
-	mappers = nil;
-	session = nil;
-	[self registerForOtherClients];
-	if ([[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL] > 0)
-		[self setStatus:@"Syncronization complete, auto sync enabled"];
-	else
-		[self setStatus:@"Syncronization complete"];
-		
-	[self setStatus2:@""];	
-	[[NSUserDefaults standardUserDefaults] setObject:[NSCalendarDate date] forKey:PREF_LAST_SYNC_DATE];
-	[self showLastSyncStatus];
 }
 
 - (void)showLastSyncStatus
@@ -307,95 +240,9 @@ static const int SFC_GO = 42;
 	}
 }
 
-- (void)slowSyncWithMapper:(BaseMapper *)mapper mapperIndex:(int)mapperIdx;
-{
-	[self setStatus:[NSString stringWithFormat:@"Synchronizing %@ from Salesforce", [mapper primarySalesforceObjectDisplayName]]];
-	ZKQueryResult * sobjects = [sforce query:[mapper soqlQuery]];	
-	NSLog(@"query returned %d rows", [sobjects size]);
-	[self setStatus2:[NSString stringWithFormat:@"fetched %d %@ from Salesforce.com", [sobjects size], [mapper primarySalesforceObjectDisplayName]]];
-	UInt32 pos = 0;
-	do 
-	{
-		[mapper pushChangesForSObjects:[sobjects records]];
-		pos += [[sobjects records] count];
-		if ([sobjects size] > 0)
-			[progress setDoubleValue:5 + (pos * 45 * mapperIdx / [mappers count] / [sobjects size])];
-		if ([sobjects done] == YES) break;
-		sobjects = [sforce queryMore:[sobjects queryLocator]];
-	} while(true);
-}
-
-- (void)pullChanges {
-	// pull
-	[self setStatus:@"Sending local changes to Salesforce.com"];
-	[self setStatus2:@""];
-	DeleteAccumulator * acc = [[DeleteAccumulator alloc] initWithSession:session sforce:sforce];
-	[mappers setAccumulator:acc];
-		
-	BaseMapper * mapper;
-	ISyncChange * c;
-	int mapperIdx = 1;
-	NSEnumerator *mapperenum = [mappers objectEnumerator];
-	while (mapper = [mapperenum nextObject]) {
-		// we have to get all the changes first to get a good progress indication
-		NSEnumerator *e = [session changeEnumeratorForEntityNames:[NSArray arrayWithObject:[mapper primaryMacEntityName]]];
-		NSArray *primaryChanges = [e allObjects];
-		e = [session changeEnumeratorForEntityNames:[mapper entityNames]];
-		NSMutableArray *childChanges = [NSMutableArray arrayWithArray:[e allObjects]];
-		UInt totalChanges = [primaryChanges count] + [childChanges count];
-		[self setStatus2:[NSString stringWithFormat:@"%d %@ changes recieved", totalChanges, [mapper primarySalesforceObjectDisplayName]]];
-		
-		UInt pos = 0;
-		e = [primaryChanges objectEnumerator];
-		while (c = [e nextObject]) {
-			[progress setDoubleValue:50 + (pos++ *49 * mapperIdx / [mappers count]/totalChanges)];
-			NSLog(@"pulled change : %@", c);
-			[self sendChangeToSalesforce:c accumulator:acc mapper:mapper];
-		}
-
-		// Allow the mapper to pre-process the set of child changes (for example by changing an update to a delete/create pair instead)
-		[mapper preprocessChildChanges:childChanges];
-		
-		// sort the child changes by type, so that we can process all the deletes first
-		// this is so that changes to child entities, that are flattened into the top
-		// level entity in the salesforce side won't loose data (by apply the delete after an add)
-		// entourage in particular seems to do the delete/add trick for child entities a lot
-		NSSortDescriptor *sortdesc = [[[NSSortDescriptor alloc] initWithKey:@"type" ascending:NO] autorelease];
-		NSArray *sortedChildChanges = [childChanges sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortdesc]];
-		e = [sortedChildChanges objectEnumerator];
-		while (c = [e nextObject]) {
-			[progress setDoubleValue:50 + (pos++ *49 * mapperIdx / [mappers count]/totalChanges)];
-			NSLog(@"pulled change : %@", c);
-			[self sendChangeToSalesforce:c accumulator:acc mapper:mapper];
-		}
-		[mapper finish];
-		++mapperIdx;
-	}
-	[acc flush];
-	[acc release];
-}
-
-- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper
-{
-	if ([change type] == ISyncChangeTypeDelete)
-	{
-		NSLog(@"delete %@", [change recordIdentifier]);	
-		// don't get sent an entityName for delete, so need to work it all out from the Id
-		// id, will either be a regular sfdc 18 char Id for main entities, or one of our
-		// fandangled compound keys
-		NSString * i = [change recordIdentifier];
-		if ([mapper isChildEntity:i]) {
-			[mapper relationshipUpdate:change];			
-		} else {
-			// regular delete
-			[acc enqueueDelete:[change recordIdentifier]];
-		}
-	} else {
-		NSString * entity = [[change record] objectForKey:key_RecordEntityName];
-		NSLog(@"%d : %@ %@", [change type], [change recordIdentifier], [change record]);
-
-		[mapper pulledChange:change entityName:entity];		
-	}
+-(void)setProgress:(double)p {
+	[progressIndicator setDoubleValue:p];
+	[progressIndicator display];
 }
 
 - (void)setStatus:(NSString *)newStatus
@@ -414,34 +261,23 @@ static const int SFC_GO = 42;
 	[statusText2 display];
 }
 
-- (ISyncClient *)registerClient {
-	ISyncManager *manager = [ISyncManager sharedManager];
-	ISyncClient *syncClient;
+-(double)progress {
+	return [progressIndicator doubleValue];
+}
 
-	NSDictionary *plist = [[NSBundle mainBundle] infoDictionary];
-	NSString * currentVersionString = [plist objectForKey:@"CFBundleVersion"];
-	float currentVersion = currentVersionString == nil ? 0.0f : [currentVersionString floatValue];	
-	float lastRegistered = [[NSUserDefaults standardUserDefaults] floatForKey:PREF_VERSION_OF_LAST_REGISTRATION];
-	
-	// See if our client has already registered
-	if ( (currentVersion > lastRegistered) || 
-	     (!(syncClient = [manager clientWithIdentifier:@"com.pocketsoap.isync.sfcubed.contacts"])) ) {
-		// and if it hasn't, register the client.
-		NSLog(@"registering sync client (for sfCubed v%f)", currentVersion);
-		NSString *plist = [[NSBundle mainBundle] pathForResource:@"ClientDescription" ofType:@"plist"];
-		syncClient = [manager registerClientWithIdentifier:@"com.pocketsoap.isync.sfcubed.contacts" 
-							descriptionFilePath:plist];
-							
-		[[NSUserDefaults standardUserDefaults] setFloat:currentVersion forKey:PREF_VERSION_OF_LAST_REGISTRATION];
-	}	
-	return syncClient;
+-(NSString *)status {
+	return [statusText1 stringValue];
+}
+
+-(NSString *)status2 {
+	return [statusText2 stringValue];
 }
 
 - (void)registerForOtherClients
 {	
 	if (!registeredWithOtherClients)
 	{
-		ISyncClient * syncClient = [self registerClient];
+		ISyncClient * syncClient = [SyncRunner syncClient];
 		[syncClient setShouldSynchronize:YES withClientsOfType:ISyncClientTypeApplication];
 		[syncClient setShouldSynchronize:YES withClientsOfType:ISyncClientTypeServer];
 		[syncClient setShouldSynchronize:YES withClientsOfType:ISyncClientTypeDevice];
@@ -450,7 +286,7 @@ static const int SFC_GO = 42;
 	}
 }
 
-- (void)client:(ISyncClient *)client willSyncEntityNames:(NSArray  *)entityNames
+- (void)client:(ISyncClient *)client willSyncEntityNames:(NSArray *)entityNames
 {
 	NSLog(@"client:%@ will Sync Entity Names: %@", [client displayName], entityNames);
 	[self syncNow:self];
@@ -465,8 +301,7 @@ static const int SFC_GO = 42;
 	[alert setInformativeText:@"This will clear all sync history (but not any data), next time you sync it will be just like the first sync."];
 	NSLog(@"runModal %d", [alert runModal]);
 	[alert release];
-	[[ISyncManager sharedManager] unregisterClient:[self registerClient]];
+	[[ISyncManager sharedManager] unregisterClient:[SyncRunner syncClient]];
 }
-
 
 @end

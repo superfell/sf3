@@ -26,6 +26,7 @@
 		F42A02AE0B58A9F600C8D9D5 /* minus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AC0B58A9F600C8D9D5 /* minus-8.png */; };
 		F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AD0B58A9F600C8D9D5 /* plus-8.png */; };
 		F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = F4415B130D5FD09600A69CCB /* deleteAccumulator.m */; };
+		F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = F44424AE0D600003000B3C7D /* SyncRunner.m */; };
 		F44604DD0AA3EE4C0036D487 /* SFPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F44604DC0AA3EE4C0036D487 /* SFPrefs.m */; };
 		F44ADABD0C337BB20031F832 /* ActivityMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F44ADABB0C337BB20031F832 /* ActivityMapper.m */; };
 		F458C04F0B6B015C00084F43 /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F458C04B0B6B015C00084F43 /* ZKPicklistEntry.m */; };
@@ -117,6 +118,8 @@
 		F42A02AD0B58A9F600C8D9D5 /* plus-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus-8.png"; path = "../common/plus-8.png"; sourceTree = SOURCE_ROOT; };
 		F4415B120D5FD09600A69CCB /* deleteAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteAccumulator.h; sourceTree = "<group>"; };
 		F4415B130D5FD09600A69CCB /* deleteAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteAccumulator.m; sourceTree = "<group>"; };
+		F44424AD0D600003000B3C7D /* SyncRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncRunner.h; sourceTree = "<group>"; };
+		F44424AE0D600003000B3C7D /* SyncRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncRunner.m; sourceTree = "<group>"; };
 		F44604DB0AA3EE4C0036D487 /* SFPrefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFPrefs.h; sourceTree = "<group>"; };
 		F44604DC0AA3EE4C0036D487 /* SFPrefs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SFPrefs.m; sourceTree = "<group>"; };
 		F44ADABA0C337BB20031F832 /* ActivityMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMapper.h; sourceTree = "<group>"; };
@@ -207,24 +210,10 @@
 			children = (
 				F491205B0A9782F4007F6F32 /* SFCubed.h */,
 				F491205A0A9782F4007F6F32 /* SFCubed.m */,
-				F4415B120D5FD09600A69CCB /* deleteAccumulator.h */,
-				F4415B130D5FD09600A69CCB /* deleteAccumulator.m */,
-				F46A31E90A9C1EF4002D6696 /* AccItem.h */,
-				F46A31EA0A9C1EF4002D6696 /* AccItem.m */,
 				F46A32E90A9CB549002D6696 /* Constants.h */,
 				F46A32EA0A9CB549002D6696 /* Constants.m */,
-				F422B2380AA0FB7200A7A7D5 /* LookupInfoCache.h */,
-				F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */,
-				F422B3690AA173B800A7A7D5 /* SyncFilters.h */,
-				F422B36A0AA173B800A7A7D5 /* SyncFilters.m */,
 				F44604DB0AA3EE4C0036D487 /* SFPrefs.h */,
 				F44604DC0AA3EE4C0036D487 /* SFPrefs.m */,
-				F4F8664E0B6B09D3004CB54D /* AcceptChangeInfo.h */,
-				F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */,
-				F40EE56B0BACB0B900796CF4 /* PulledItem.h */,
-				F40EE56C0BACB0B900796CF4 /* PulledItem.m */,
-				F41652E30C2DF198007B541E /* MyISyncChange.h */,
-				F41652E40C2DF198007B541E /* MyISyncChange.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -263,10 +252,11 @@
 			isa = PBXGroup;
 			children = (
 				F4CEA9B80A9EDA3900B04BD0 /* readme.txt */,
-				F4139D4C0B3A36880064489A /* common */,
 				F465A55F0AAFD4CA004AC796 /* FieldMappers */,
 				F4139D4D0B3A36A90064489A /* Object Mappers */,
+				F44424A80D5FFF5B000B3C7D /* Sync Driver */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				F4139D4C0B3A36880064489A /* common */,
 				F4CEAA480A9FE81700B04BD0 /* Sforce Api */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -346,6 +336,29 @@
 				F4725C500AF8704300E2CE76 /* CalendarTracker.m */,
 			);
 			name = "Object Mappers";
+			sourceTree = "<group>";
+		};
+		F44424A80D5FFF5B000B3C7D /* Sync Driver */ = {
+			isa = PBXGroup;
+			children = (
+				F44424AD0D600003000B3C7D /* SyncRunner.h */,
+				F44424AE0D600003000B3C7D /* SyncRunner.m */,
+				F4415B120D5FD09600A69CCB /* deleteAccumulator.h */,
+				F4415B130D5FD09600A69CCB /* deleteAccumulator.m */,
+				F46A31E90A9C1EF4002D6696 /* AccItem.h */,
+				F46A31EA0A9C1EF4002D6696 /* AccItem.m */,
+				F4F8664E0B6B09D3004CB54D /* AcceptChangeInfo.h */,
+				F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */,
+				F40EE56B0BACB0B900796CF4 /* PulledItem.h */,
+				F40EE56C0BACB0B900796CF4 /* PulledItem.m */,
+				F41652E30C2DF198007B541E /* MyISyncChange.h */,
+				F41652E40C2DF198007B541E /* MyISyncChange.m */,
+				F422B2380AA0FB7200A7A7D5 /* LookupInfoCache.h */,
+				F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */,
+				F422B3690AA173B800A7A7D5 /* SyncFilters.h */,
+				F422B36A0AA173B800A7A7D5 /* SyncFilters.m */,
+			);
+			name = "Sync Driver";
 			sourceTree = "<group>";
 		};
 		F465A55F0AAFD4CA004AC796 /* FieldMappers */ = {
@@ -506,6 +519,7 @@
 				F40B3A600C4B27C70014E88C /* ZKLoginController.m in Sources */,
 				F40B3A6B0C4B28190014E88C /* credential.m in Sources */,
 				F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */,
+				F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

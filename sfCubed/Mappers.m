@@ -45,7 +45,7 @@
 
 - (void)addMapper:(BaseMapper *)m {
 	[mappers addObject:m];
-	// todo, make "BaseMapper may not respond to -setCalendarTracker warning go away
+	// todo, make "BaseMapper may not respond to -setCalendarTracker" warning go away
 	if ([m respondsToSelector:@selector(setCalendarTracker:)])
 		[m setCalendarTracker:calendar];
 }

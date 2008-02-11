@@ -38,8 +38,7 @@
 
 @class DeleteAccumulator;
 
-@interface SFCubed : NSObject
-{
+@interface SFCubed : NSObject {
 	IBOutlet RoundedBox 	*mainBox;
 	IBOutlet NSWindow 		*welcomeWindow;
 	IBOutlet NSButton 		*showWelcomeCheckbox;
@@ -50,7 +49,7 @@
     IBOutlet NSWindow    	*myWindow;
 	IBOutlet NSTextField 	*statusText1;
 	IBOutlet NSTextField 	*statusText2;
-    IBOutlet NSProgressIndicator *progress;
+    IBOutlet NSProgressIndicator *progressIndicator;
 
 	IBOutlet NSDrawer	 	*logDrawer;
 	IBOutlet NSTextView  	*logTextView;
@@ -59,8 +58,7 @@
 
 	ZKLoginController		*login;
 	ZKSforceClient			*sforce;
-	ISyncSession			*session;	
-	Mappers					*mappers;
+
 	NSTimer					*trickleTimer;
 	NSURL					*baseUiUrl;
 	BOOL 					registeredWithOtherClients;
@@ -72,8 +70,6 @@
 - (IBAction)showPrefsWindow:(id)sender;
 - (IBAction)closePrefsWindow:(id)sender;
 
-- (void)setStatus:(NSString *)newStatus;
-- (void)setStatus2:(NSString *)newStatus;
 - (void)showLastSyncStatus;
 - (IBAction)toggleLogDrawer:(id)sender;
 
@@ -84,12 +80,7 @@
 - (IBAction)triggerSyncNow:(id)sender;
 
 - (IBAction)syncNow:(id)sender;
-- (void)performSync;
-- (void)slowSyncWithMapper:(BaseMapper *)mapper mapperIndex:(int)idx;
-- (void)pullChanges;
-- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper;
 
-- (ISyncClient *)registerClient;
 - (IBAction)unregisterClient:(id)sender;
 - (void)client:(ISyncClient *)client willSyncEntityNames:(NSArray  *)entityNames;
 - (void)registerForOtherClients;

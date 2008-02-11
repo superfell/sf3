@@ -19,7 +19,29 @@
 // THE SOFTWARE.
 //
 
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-	#import <SyncServices/SyncServices.h>
-#endif
+
+#import <Cocoa/Cocoa.h>
+
+@class ZKSforceClient;
+@class ISyncSession;
+@class Mappers;
+
+@interface SyncRunner : NSObject {
+	ZKSforceClient		*sforce;
+	ISyncSession		*session;	
+	Mappers				*mappers;
+
+	NSString			*status;
+	NSString			*status2;
+	double				progress;
+}
+
++(ISyncClient *)syncClient;
+
+-(id)initWithSforceSession:(ZKSforceClient *)sfclient;
+-(BOOL)performSync;
+
+-(NSString *)status;
+-(NSString *)status2;
+-(double)progress;
+@end
