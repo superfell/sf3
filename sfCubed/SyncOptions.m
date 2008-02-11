@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2008 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,12 +20,45 @@
 //
 
 
-#import <Cocoa/Cocoa.h>
-#import "ActivityMapper.h"
+#import "SyncOptions.h"
+#import "Constants.h"
 
-@interface EventMapper : ActivityMapper {
+@implementation SyncOptions
+
+-(id)initFromUserDefaults {
+	self = [super init];
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	syncContacts			= [ud boolForKey:PREF_SYNC_CONTACTS];
+	limitContactSyncToOwner = [ud boolForKey:PREF_MY_CONTACTS];
+	syncEvents				= [ud boolForKey:PREF_SYNC_EVENTS];
+	limitEventSyncToOwner	= [ud boolForKey:PREF_MY_EVENTS];
+	syncTasks				= [ud boolForKey:PREF_SYNC_TASKS];
+	limitTaskSyncToOwner	= [ud boolForKey:PREF_MY_TASKS];
+	return self;
 }
 
--(id)initMapper:(ZKSforceClient *)sf  options:(SyncOptions *)options;
+-(BOOL)syncContacts {
+	return syncContacts;
+}
+
+-(BOOL)limitContactSyncToOwner {
+	return limitContactSyncToOwner;
+}
+
+-(BOOL)syncEvents {
+	return syncEvents;
+}
+
+-(BOOL)limitEventSyncToOwner {
+	return limitEventSyncToOwner;
+}
+
+-(BOOL)syncTasks {
+	return syncTasks;
+}
+
+-(BOOL)limitTaskSyncToOwner {
+	return limitTaskSyncToOwner;
+}
 
 @end

@@ -28,13 +28,13 @@
 #import "zkUserInfo.h"
 #import "zkDescribeSobject.h"
 #import "zkSObject.h"
+#import "SyncOptions.h"
 
 @implementation EventMapper
 
-- (id)initMapper:(ZKSforceClient *)sf
+- (id)initMapper:(ZKSforceClient *)sf  options:(SyncOptions *)syncOptions
 {
-	self = [super init];
-	sforce = [sf retain];
+	self = [super initWithClient:sf andOptions:syncOptions];
 	describe = [[sforce describeSObject:@"Event"] retain];
 
 	NSMutableDictionary * mapping = [[NSMutableDictionary alloc] init];
@@ -68,7 +68,7 @@
 	NSMutableString * soql = [NSMutableString stringWithString:@"select LastModifiedDate, ActivityDate"];
 	[self appendValues:[fieldMapping  keyEnumerator] dest:soql format:@", %@"];
 	[soql appendString:@" from event"];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_MY_EVENTS]) 
+	if ([options limitEventSyncToOwner]) 
 		[soql appendFormat:@" where ownerId='%@'", [[sforce currentUserInfo] userId]];
 	NSLog(@"soql : %@", soql);
 	return soql;

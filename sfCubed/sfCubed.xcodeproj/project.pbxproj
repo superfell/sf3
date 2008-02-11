@@ -65,6 +65,7 @@
 		F4DD01440AA69C5C0033BB4B /* TaskMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DD01430AA69C5C0033BB4B /* TaskMapper.m */; };
 		F4E7C06C0AE5E1960013BA0A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
 		F4E7C06F0AE5E19B0013BA0A /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
+		F4F061B70D60197E003163D4 /* SyncOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F061B60D60197E003163D4 /* SyncOptions.m */; };
 		F4F866510B6B09D3004CB54D /* AcceptChangeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */; };
 /* End PBXBuildFile section */
 
@@ -185,6 +186,8 @@
 		F4DD01420AA69C5C0033BB4B /* TaskMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMapper.h; sourceTree = "<group>"; };
 		F4DD01430AA69C5C0033BB4B /* TaskMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMapper.m; sourceTree = "<group>"; };
 		F4E7C0580AE5E1960013BA0A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		F4F061B50D60197E003163D4 /* SyncOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncOptions.h; sourceTree = "<group>"; };
+		F4F061B60D60197E003163D4 /* SyncOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncOptions.m; sourceTree = "<group>"; };
 		F4F8664E0B6B09D3004CB54D /* AcceptChangeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptChangeInfo.h; sourceTree = "<group>"; };
 		F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptChangeInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -357,6 +360,8 @@
 				F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */,
 				F422B3690AA173B800A7A7D5 /* SyncFilters.h */,
 				F422B36A0AA173B800A7A7D5 /* SyncFilters.m */,
+				F4F061B50D60197E003163D4 /* SyncOptions.h */,
+				F4F061B60D60197E003163D4 /* SyncOptions.m */,
 			);
 			name = "Sync Driver";
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				F40B3A6B0C4B28190014E88C /* credential.m in Sources */,
 				F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */,
 				F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */,
+				F4F061B70D60197E003163D4 /* SyncOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

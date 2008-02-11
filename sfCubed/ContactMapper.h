@@ -49,7 +49,7 @@
 + (NSDictionary *)supportedPhoneTypes;
 
 // init
-- (ContactMapper *)initMapper:(ZKSforceClient *)sf;
+- (ContactMapper *)initMapper:(ZKSforceClient *)sf options:(SyncOptions *)options;
 
 // push impl
 - (NSDictionary *)makeSyncEmailRecord:(ZKSObject *)src;

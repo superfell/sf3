@@ -29,17 +29,17 @@
 
 @implementation BaseMapper
 
-- (id)init
-{
+-(id)initWithClient:(ZKSforceClient *)client andOptions:(SyncOptions *)syncOptions {
 	self = [super init];
 	pulledEntities = [[NSMutableDictionary alloc] init];
 	pushedSObjects = [[NSMutableDictionary alloc] init];
 	phase = syncPhaseSetup;
+	sforce = [client retain];
+	options = [syncOptions retain];
 	return self;
 }
 
--(void)dealloc
-{
+-(void)dealloc {
 	[fieldMapping release];
 	[session release];
 	[sforce release];
@@ -47,6 +47,7 @@
 	[pulledEntities release];
 	[pushedSObjects release];
 	[describe release];
+	[options release];
 	[super dealloc];
 }
 

@@ -27,7 +27,7 @@
 @interface TaskMapper : ActivityMapper {
 }
 
-- (id)initMapper:(ZKSforceClient *)sf;
+- (id)initMapper:(ZKSforceClient *)sf  options:(SyncOptions *)options;
 
 @end
 

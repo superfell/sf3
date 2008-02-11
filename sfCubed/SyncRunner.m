@@ -22,6 +22,7 @@
 #import <SyncServices/SyncServices.h>
 #import "SyncRunner.h"
 #import "Constants.h"
+#import "SyncOptions.h"
 
 #import "zkSforceClient.h"
 #import "zkSObject.h"
@@ -37,7 +38,7 @@
 
 @interface SyncRunner (private)
 
--(BOOL)runOneSync;
+-(BOOL)runOneSync:(SyncOptions *)options;
 -(void)slowSyncWithMapper:(BaseMapper *)mapper mapperIndex:(int)idx;
 -(void)pullChanges;
 -(void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper;
@@ -90,9 +91,9 @@
 	[super dealloc];
 }
 
--(BOOL)performSync {
+-(BOOL)performSync:(SyncOptions *)syncOptions; {
 	@try {
-		return [self runOneSync];
+		return [self runOneSync:syncOptions];
 	}
 	@catch (NSException *ex) {
 		if (session != nil)
@@ -102,7 +103,7 @@
 	return NO;
 }
 
-- (BOOL)runOneSync {
+- (BOOL)runOneSync:(SyncOptions *)options; {
 	// check if we can sync
     if ([[ISyncManager sharedManager] isEnabled] == NO) {
 		// todo, register for notification of sync getting enabled
@@ -120,14 +121,14 @@
 	// mappers
 	[sforce setUpdateMru:YES];
 	mappers = [[Mappers alloc] initForUserId:[[sforce currentUserInfo] userId]];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_CONTACTS])
-		[mappers addMapper:[[[ContactMapper alloc] initMapper:sforce] autorelease]];
+	if ([options syncContacts])
+		[mappers addMapper:[[[ContactMapper alloc] initMapper:sforce options:options] autorelease]];
 
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_TASKS])
-		[mappers addMapper:[[[TaskMapper alloc]    initMapper:sforce] autorelease]];
+	if ([options syncTasks])
+		[mappers addMapper:[[[TaskMapper alloc] initMapper:sforce options:options] autorelease]];
 	
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SYNC_EVENTS])
-		[mappers addMapper:[[[EventMapper alloc]	initMapper:sforce] autorelease]];
+	if ([options syncEvents])
+		[mappers addMapper:[[[EventMapper alloc] initMapper:sforce options:options] autorelease]];
 		
 	// todo, add additional mappers here
 	// todo, should we be adding the mappers, or should Mappers know the list of mappers ?

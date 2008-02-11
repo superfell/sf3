@@ -25,6 +25,7 @@
 @class ZKSforceClient;
 @class ISyncSession;
 @class Mappers;
+@class SyncOptions;
 
 @interface SyncRunner : NSObject {
 	ZKSforceClient		*sforce;
@@ -39,7 +40,7 @@
 +(ISyncClient *)syncClient;
 
 -(id)initWithSforceSession:(ZKSforceClient *)sfclient;
--(BOOL)performSync;
+-(BOOL)performSync:(SyncOptions *)options;
 
 -(NSString *)status;
 -(NSString *)status2;

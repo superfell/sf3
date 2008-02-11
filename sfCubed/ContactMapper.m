@@ -29,6 +29,7 @@
 #import "zkUserInfo.h"
 #import "AcceptChangeInfo.h"
 #import "MyISyncChange.h"
+#import "SyncOptions.h"
 
 @implementation ContactMapper
 
@@ -43,10 +44,9 @@
 	return [mapping autorelease];
 }
 
-- (ContactMapper *)initMapper:(ZKSforceClient *)sf
+- (ContactMapper *)initMapper:(ZKSforceClient *)sf  options:(SyncOptions *)syncOptions
 {
-	self = [super init];
-	sforce = [sf retain];
+	self = [super initWithClient:sf andOptions:syncOptions];
 
 	NSMutableDictionary * mapping = [[NSMutableDictionary alloc] init];
 	[mapping setObject:[[[FieldMappingInfo alloc] initWithInfo:@"first name"	sfdcName:@"FirstName"	 type:syncFieldTypeString] autorelease]  forKey:@"FirstName"];
@@ -140,7 +140,7 @@
 		[self appendValues:[addressParts  keyEnumerator] dest:soql format:[NSString stringWithFormat:@", %@%%@", prefix]];
 	}
 	[soql appendString:@" from contact"];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_MY_CONTACTS]) 
+	if ([options limitContactSyncToOwner]) 
 		[soql appendFormat:@" where ownerId='%@'", [[sforce currentUserInfo] userId]];
 	NSLog(@"soql : %@", soql);
 	return soql;

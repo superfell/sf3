@@ -25,6 +25,8 @@
 #import "zkDescribeSObject.h"
 #import "deleteAccumulator.h"
 
+@class SyncOptions;
+
 // where we at ?
 typedef enum SyncMapperPhase {
 	syncPhaseSetup,
@@ -45,7 +47,10 @@ typedef enum SyncMapperPhase {
 	NSMutableDictionary *pushedSObjects;
 	ZKDescribeSObject	*describe;
 	SyncMapperPhase		phase;
+	SyncOptions			*options;
 }
+
+-(id)initWithClient:(ZKSforceClient *)client andOptions:(SyncOptions *)options;
 
 // init
 - (void)setSession:(ISyncSession *)ss;

@@ -25,6 +25,7 @@
 #import "Constants.h"
 #import <ExceptionHandling/NSExceptionHandler.h>
 #import "SyncRunner.h"
+#import "SyncOptions.h"
 
 static const int SFC_QUIT = -1;
 static const int SFC_GO = 42;
@@ -167,7 +168,7 @@ static const int SFC_GO = 42;
 	[self bind:@"progress" toObject:runner withKeyPath:@"progress" options:nil];
 	BOOL ok = NO;
 	@try {
-		ok = [runner performSync];
+		ok = [runner performSync:[[[SyncOptions alloc] initFromUserDefaults] autorelease]];
 	} @finally {
 		[self unbind:@"status"];
 		[self unbind:@"status2"];

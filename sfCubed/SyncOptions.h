@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2008 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,13 +19,24 @@
 // THE SOFTWARE.
 //
 
-
 #import <Cocoa/Cocoa.h>
-#import "ActivityMapper.h"
 
-@interface EventMapper : ActivityMapper {
+
+@interface SyncOptions : NSObject {
+	BOOL	syncContacts;
+	BOOL	limitContactSyncToOwner;
+	BOOL	syncEvents;
+	BOOL	limitEventSyncToOwner;
+	BOOL	syncTasks;
+	BOOL	limitTaskSyncToOwner;
 }
 
--(id)initMapper:(ZKSforceClient *)sf  options:(SyncOptions *)options;
+-(id)initFromUserDefaults;
 
+-(BOOL)syncContacts;
+-(BOOL)limitContactSyncToOwner;
+-(BOOL)syncEvents;
+-(BOOL)limitEventSyncToOwner;
+-(BOOL)syncTasks;
+-(BOOL)limitTaskSyncToOwner;
 @end
