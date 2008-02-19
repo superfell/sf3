@@ -62,9 +62,9 @@
 	[cal setObject:@"This calendar automatically created by SfCubed" forKey:@"notes"];
 	[cal setObject:[NSNumber numberWithBool:NO] forKey:@"read only"];
 	[cal setObject:@"Salesforce.com" forKey:@"title"];
-	NSDictionary *truth = nil;
 	NSArray *theTasks = tasks;
 	NSArray *theEvents = events;
+	NSDictionary *truth = nil;
 	if ([tasks count] == 0 || [events count] == 0) {
 		ISyncRecordSnapshot *ss = [s snapshotOfRecordsInTruth];
 		NSString *recordId = [self calendarId];

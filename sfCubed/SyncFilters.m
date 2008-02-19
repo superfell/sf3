@@ -119,3 +119,40 @@
 }
 
 @end
+
+@implementation CalendarChildSyncFilter
+
+-(id)initWithEntity:(NSString *)e calendar:(NSString *)calId {
+	self = [super init];
+	entity = [e copy];
+	calendarId = [calId copy];
+	return self;
+}
+
+-(void)dealloc {
+	[entity release];
+	[calendarId release];
+	[super dealloc];
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+	entity = [[coder decodeObjectForKey:@"entity"] retain];
+	calendarId = [[coder decodeObjectForKey:@"cid"] retain];
+	return self;
+}
+ 
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:entity forKey:@"entity"];
+	[coder encodeObject:calendarId forKey:@"cid"];
+}
+
+- (NSArray *)supportedEntityNames {
+    return [NSArray arrayWithObject:entity];
+}
+
+- (BOOL)shouldApplyRecord:(NSDictionary *)record withRecordIdentifier:(NSString *)recordIdentifier {
+	return [[record valueForKey:@"calendar"] containsObject:calendarId];
+}
+
+@end

@@ -22,7 +22,6 @@
 #import "ActivityMapper.h"
 #import "CalendarTracker.h"
 #import "Constants.h"
-#import "SyncFilters.h"
 
 @implementation ActivityMapper
 
@@ -33,10 +32,6 @@
 
 - (NSString *)primaryMacEntityName {
 	return Entity_Calendar;
-}
-
-- (NSArray *)filters {
-	return [NSArray arrayWithObject:[[CalendarSyncFilter alloc] init]];
 }
 
 -(void)setCalendarTracker:(CalendarTracker *)cal {

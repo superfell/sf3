@@ -46,3 +46,10 @@
 @interface CalendarSyncFilter : BaseSyncFilter <ISyncFiltering> {
 }
 @end
+
+@interface CalendarChildSyncFilter : BaseSyncFilter <ISyncFiltering> {
+	NSString *calendarId;
+	NSString *entity;
+}
+-(id)initWithEntity:(NSString *)entity calendar:(NSString *)calId;
+@end

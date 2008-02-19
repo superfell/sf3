@@ -27,6 +27,7 @@
 #import "zkUserInfo.h"
 #import "zkDescribeSobject.h"
 #import "SyncOptions.h"
+#import "SyncFilters.h"
 
 @implementation TaskMapper
 	
@@ -50,6 +51,12 @@
 // what we care about
 - (NSArray *)entityNames {
 	return [NSArray arrayWithObjects:Entity_Calendar, Entity_Task, nil];
+}
+
+- (NSArray *)filters {
+	return [NSArray arrayWithObjects:[[[CalendarSyncFilter alloc] init] autorelease], 
+									 [[[CalendarChildSyncFilter alloc] initWithEntity:Entity_Task calendar:[calendarTracker calendarId]] autorelease],
+									 nil];
 }
 
 - (NSString *)primarySalesforceObjectDisplayName {
