@@ -54,10 +54,11 @@
 	UInt32 i;
 	for (i = 0; i < [results count]; i++) {
 		ZKSaveResult * sr = [results objectAtIndex:i];
-		if ([sr success]) {
+		if ([sr success] || [[sr statusCode] isEqualToString:@"ENTITY_IS_DELETED"]) {
+			// either the delete was succesful, or we've already deleted the item in salesforce, eitherway we can accept this one.
 			[session clientAcceptedChangesForRecordWithIdentifier:[deletes objectAtIndex:i] formattedRecord:nil newRecordIdentifier:nil];
 		} else {
-			NSLog(@"Error deleting :%@ -> %@", [deletes objectAtIndex:i], [sr message]);
+			NSLog(@"Error deleting :%@ -> %@", [deletes objectAtIndex:i], sr);
 		}
 	}
 	[session clientCommittedAcceptedChanges];
