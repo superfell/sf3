@@ -116,15 +116,15 @@ static NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 	}
 }
 
-- (void)setFieldDateTimeValue:(NSCalendarDate *)value field:(NSString *)field {
-	NSMutableString *dt = [NSMutableString stringWithString:[value descriptionWithCalendarFormat:@"%Y-%m-%dT%H:%M:%S.%F%z"]];
+- (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field {
+	NSMutableString *dt = [NSMutableString stringWithString:[value descriptionWithCalendarFormat:@"%Y-%m-%dT%H:%M:%S.%F%z" timeZone:nil locale:nil]];
 	// insert the : in the TZ offset, to make it xsd:dateTime
 	[dt insertString:@":" atIndex:[dt length]-2];
 	[self setFieldValue:dt field:field];
 }
 
-- (void)setFieldDateValue:(NSCalendarDate *)value field:(NSString *)field {
-	[self setFieldValue:[value descriptionWithCalendarFormat:@"%Y-%m-%d"] field:field];	
+- (void)setFieldDateValue:(NSDate *)value field:(NSString *)field {
+	[self setFieldValue:[value descriptionWithCalendarFormat:@"%Y-%m-%d" timeZone:nil locale:nil] field:field];	
 }	
 
 - (id)fieldValue:(NSString *)field {

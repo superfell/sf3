@@ -26,6 +26,7 @@
 #import "deleteAccumulator.h"
 
 @class SyncOptions;
+@class SalesforceChangeSummary;
 
 // where we at ?
 typedef enum SyncMapperPhase {
@@ -54,7 +55,6 @@ typedef enum SyncMapperPhase {
 
 // init
 - (void)setSession:(ISyncSession *)ss;
-- (void)setAccumulator:(DeleteAccumulator *)acc;
 
 // what you implement in a subclass
 
@@ -75,11 +75,14 @@ typedef enum SyncMapperPhase {
 																			// to do some up front work on child changes before doing the main entity
 - (void)pulledChange:(ISyncChange *)change entityName:(NSString *)entity;	// we pulled this change from sync Services
 - (void)relationshipUpdate:(ISyncChange *)change;							// called when a child entity that's mapped is pull'd
+- (void)pulledDelete:(NSString *)recordId;									// called when we pull a record delete during the sync.
 - (void)updateSObject:(ZKSObject *)o withChanges:(NSDictionary *)syncData;	// update this sObject with the data from sync services
 - (BOOL)shouldFormatWhenAccepting;											// defaults to yes, you can override this if you need to
 																			// if you don't format when accepting, then be aware that this can lead
 																			// to data loss if the sync service record has more children than we
 																			// can support on the sfdc side.
+- (void)updateChangeSummary:(SalesforceChangeSummary *)summary;				// update the summary object with the stats about what changes we plan to
+																			// make in salesforce.com
 // base class pre-canned implementation
 // push impl
 - (void)pushChangesForSObjects:(NSArray *)src;

@@ -26,6 +26,7 @@
 #import "zkSaveResult.h"
 #import "AcceptChangeInfo.h"
 #import "PulledItem.h"
+#import "SalesforceObjectChangeSummary.h"
 
 @implementation BaseMapper
 
@@ -96,12 +97,6 @@
 	session = [ss retain];
 }
 
-- (void)setAccumulator:(DeleteAccumulator *)acc {
-	if (acc == accumulator) return;
-	[accumulator release];
-	accumulator = [acc retain];
-}
-
 //////////////////////////////////////////////////////////////////////////////////////
 // push
 //////////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +148,17 @@
 {
 	[self finishChangeType:ISyncChangeTypeModify];
 	[self finishChangeType:ISyncChangeTypeAdd];
+	[accumulator performDeletes];
+}
+
+- (DeleteAccumulator *)deleteAccumulator {
+	if (accumulator == nil)
+		accumulator = [[DeleteAccumulator alloc] initWithSession:session sforce:sforce];
+	return accumulator;
+}
+
+- (void)pulledDelete:(NSString *)recordId {
+	[[self deleteAccumulator] enqueueDelete:recordId];
 }
 
 // returns a new SObject that's a clone of the src SObject with all the read-only fields removed.
@@ -182,6 +188,22 @@
 
 - (NSDictionary *)makeSyncFormattedRecord:(ZKSObject *)src sfId:(NSString *)sfId type:(ISyncChangeType)type {
 	return [self makeSyncRecord:src];
+}
+
+- (void)updateChangeSummary:(SalesforceChangeSummary *)summary {
+	SalesforceObjectChangeSummary *s = [summary changesForEntity:[self primarySalesforceObjectDisplayName]];
+	[s incrementDeletes:[accumulator count]];
+	int add=0, update=0;
+	NSEnumerator *e = [pulledEntities objectEnumerator];
+	PulledItem *p;
+	while (p = [e nextObject]) {
+		if ([p changeType] == ISyncChangeTypeAdd)
+			add++;
+		else if ([p changeType] == ISyncChangeTypeModify)
+			update++;
+	}
+	[s incrementAdds:add];
+	[s incrementUpdates:update];
 }
 
 -(void)finishChangeType:(ISyncChangeType)changeType

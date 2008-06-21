@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2008 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,31 +19,21 @@
 // THE SOFTWARE.
 //
 
-
 #import <Cocoa/Cocoa.h>
 
-@class ZKSforceClient;
-@class ISyncSession;
-@class Mappers;
-@class SyncOptions;
+@class SalesforceChangeSummary;
 
-@interface SyncRunner : NSObject {
-	ZKSforceClient		*sforce;
-	ISyncSession		*session;	
-	Mappers				*mappers;
-
-	NSString			*status;
-	NSString			*status2;
-	double				progress;
-	SyncOptions			*options;
+@interface ProtectController : NSObject {
+	SalesforceChangeSummary *summary;
+	IBOutlet NSWindow		*window;
+	IBOutlet NSTableView	*table;
 }
 
-+(ISyncClient *)syncClient;
+-(id)initWithChanges:(SalesforceChangeSummary *)s;
 
--(id)initWithSforceSession:(ZKSforceClient *)sfclient;
--(BOOL)performSync:(SyncOptions *)options;
+// returns true if the user selected to continue with the sync
+-(BOOL)shouldContinueSync;
 
--(NSString *)status;
--(NSString *)status2;
--(double)progress;
+-(IBAction)cancelSync:(id)sender;
+-(IBAction)continueSync:(id)sender;
 @end

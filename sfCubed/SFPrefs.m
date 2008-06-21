@@ -36,6 +36,9 @@
 	[defaults setObject:[NSNumber numberWithBool:YES] forKey:PREF_SHOW_WELCOME];
 	[defaults setObject:[NSNumber numberWithInt:0]    forKey:PREF_AUTO_SYNC_INTERVAL];
 	[defaults setObject:[NSNumber numberWithInt:1]	  forKey:PREF_CALENDAR_SUFFIX];
+	[defaults setObject:[NSNumber numberWithInt:0]    forKey:PREF_PROTECT_SFDC_LIMIT];
+	[defaults setObject:[NSNumber numberWithBool:YES] forKey:PREF_ENABLE_PROTECT_SFDC];
+	
 	NSString *prod = @"https://www.salesforce.com";
 	NSString *test = @"https://test.salesforce.com";
 	NSArray *servers = [NSArray arrayWithObjects:prod, test, nil];

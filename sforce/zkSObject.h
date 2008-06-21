@@ -41,8 +41,8 @@
 // setting a fieldValue to nil will automatically put it in the fieldsToNull collection
 // setting a fieldValue to non nil will automatically remove it from the fieldsToNull collection
 - (void)setFieldValue:(NSString *)value field:(NSString *)field;
-- (void)setFieldDateTimeValue:(NSCalendarDate *)value field:(NSString *)field;
-- (void)setFieldDateValue:(NSCalendarDate *)value field:(NSString *)field;
+- (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field;
+- (void)setFieldDateValue:(NSDate *)value field:(NSString *)field;
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters

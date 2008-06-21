@@ -36,12 +36,15 @@
 #import "BaseMapper.h"
 #import "EventMapper.h"
 
+#import "SalesforceObjectChangeSummary.h"
+#import "ProtectController.h"
+
 @interface SyncRunner (private)
 
--(BOOL)runOneSync:(SyncOptions *)options;
+-(BOOL)runOneSync;
 -(void)slowSyncWithMapper:(BaseMapper *)mapper mapperIndex:(int)idx;
--(void)pullChanges;
--(void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper;
+-(BOOL)pullChanges;
+-(void)sendChangeToSalesforce:(ISyncChange *)change mapper:(BaseMapper *)mapper;
 
 -(void)setStatus:(NSString *)newStatus;
 -(void)setStatus2:(NSString *)newStatus;
@@ -88,12 +91,19 @@
 	[mappers release];
 	[status release];
 	[status2 release];
+	[options release];
 	[super dealloc];
 }
 
+-(void)setOptions:(SyncOptions *)op {
+	[options autorelease];
+	options = [op retain];
+}
+
 -(BOOL)performSync:(SyncOptions *)syncOptions; {
+	[self setOptions:syncOptions];
 	@try {
-		return [self runOneSync:syncOptions];
+		return [self runOneSync];
 	}
 	@catch (NSException *ex) {
 		if (session != nil)
@@ -103,7 +113,24 @@
 	return NO;
 }
 
-- (BOOL)runOneSync:(SyncOptions *)options; {
+-(void)enabledDisableEntitiesForSync:(ISyncClient *)client enabled:(NSArray *)shouldBeEnabled {
+	NSSet *e = [NSSet setWithArray:shouldBeEnabled];
+	NSSet *s = [NSSet setWithArray:[client enabledEntityNames]];
+	if ([e isEqualToSet:s])
+		return;
+	NSSet *all = [NSSet setWithObjects:Entity_Contact, Entity_Email, Entity_Phone, Entity_Address, Entity_Calendar, Entity_Event, Entity_Task, nil];
+	NSMutableSet *toDisable = [NSMutableSet setWithSet:all];
+	NSEnumerator *em = [e objectEnumerator];
+	NSString *entity;
+	while (entity = [em nextObject])
+		[toDisable removeObject:entity];
+	
+	NSLog(@"enabledDisableEntitiesForSync: enabling:%@ disabling:%@", toDisable, shouldBeEnabled);
+	[client setEnabled:NO forEntityNames:[toDisable allObjects]];
+	[client setEnabled:YES forEntityNames:shouldBeEnabled];
+}
+
+- (BOOL)runOneSync {
 	// check if we can sync
     if ([[ISyncManager sharedManager] isEnabled] == NO) {
 		// todo, register for notification of sync getting enabled
@@ -141,6 +168,9 @@
 	// things we want to sync
 	NSArray *entityNames = [mappers entityNames];
 	NSArray *syncFilters = [mappers filters];
+	
+	// fix up the enabled entities as needed
+	// [self enabledDisableEntitiesForSync:syncClient enabled:entityNames];
 	
 	// register the filters
 	[syncClient setFilters:syncFilters];
@@ -180,16 +210,23 @@
 	// push finished
 	[mappers pushFinished:[[sforce currentUserInfo] userId]];
 	
-	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate dateWithTimeIntervalSinceNow:30]]) {
-		[self pullChanges];
+	BOOL finish = YES;
+	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate dateWithTimeIntervalSinceNow:60]]) {
+		finish = [self pullChanges];
+		if (finish)
+			[session clientCommittedAcceptedChanges];
+		else {
+			[self setStatus:@"Synchronization cancelled"];
+			[self setStatus2:@""];
+		}
 	}
 	// all done
-	[session clientCommittedAcceptedChanges];
-	[session finishSyncing];
+	if (finish)
+		[session finishSyncing];
 	[mappers release];
 	mappers = nil;
 	session = nil;
-	return YES;
+	return finish;
 }
 
 // PUSH changes from Salesforce to SyncServices
@@ -210,15 +247,15 @@
 }
 
 // PULL changes from SyncServices to Salesforce
-- (void)pullChanges {
+// returns NO if the sync was canceled
+- (BOOL)pullChanges {
 	[self setStatus:@"Sending local changes to Salesforce.com"];
 	[self setStatus2:@""];
-	DeleteAccumulator * acc = [[DeleteAccumulator alloc] initWithSession:session sforce:sforce];
-	[mappers setAccumulator:acc];
 		
 	BaseMapper * mapper;
 	ISyncChange * c;
 	int mapperIdx = 1;
+	SalesforceChangeSummary *changeSummary = [[[SalesforceChangeSummary alloc] init] autorelease];
 	NSEnumerator *mapperenum = [mappers objectEnumerator];
 	while (mapper = [mapperenum nextObject]) {
 		// we have to get all the changes first to get a good progress indication
@@ -234,7 +271,7 @@
 		while (c = [e nextObject]) {
 			[self setProgress:50 + (pos++ *49 * mapperIdx / [mappers count]/totalChanges)];
 			NSLog(@"pulled change : %@", c);
-			[self sendChangeToSalesforce:c accumulator:acc mapper:mapper];
+			[self sendChangeToSalesforce:c mapper:mapper];
 		}
 
 		// Allow the mapper to pre-process the set of child changes (for example by changing an update to a delete/create pair instead)
@@ -250,16 +287,27 @@
 		while (c = [e nextObject]) {
 			[self setProgress:50 + (pos++ *49 * mapperIdx / [mappers count]/totalChanges)];
 			NSLog(@"pulled change : %@", c);
-			[self sendChangeToSalesforce:c accumulator:acc mapper:mapper];
+			[self sendChangeToSalesforce:c mapper:mapper];
 		}
-		[mapper finish];
 		++mapperIdx;
+		[mapper updateChangeSummary:changeSummary];
 	}
-	[acc flush];
-	[acc release];
+
+	if ([options shouldShowUserWarningOnSfdcChanges:[changeSummary totalChanges]]) {
+		ProtectController *pc = [[[ProtectController alloc] initWithChanges:changeSummary] autorelease];
+		if (![pc shouldContinueSync]) {
+			[session cancelSyncing];
+			return NO;
+		}
+	}
+
+	mapperenum = [mappers objectEnumerator];
+	while (mapper = [mapperenum nextObject]) 
+		[mapper finish];
+	return YES;
 }
 
-- (void)sendChangeToSalesforce:(ISyncChange *)change accumulator:(DeleteAccumulator *)acc mapper:(BaseMapper *)mapper {
+- (void)sendChangeToSalesforce:(ISyncChange *)change mapper:(BaseMapper *)mapper {
 	if ([change type] == ISyncChangeTypeDelete)
 	{
 		NSLog(@"delete %@", [change recordIdentifier]);	
@@ -271,7 +319,7 @@
 			[mapper relationshipUpdate:change];			
 		} else {
 			// regular delete
-			[acc enqueueDelete:[change recordIdentifier]];
+			[mapper pulledDelete:i];
 		}
 	} else {
 		NSString * entity = [[change record] objectForKey:key_RecordEntityName];

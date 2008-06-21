@@ -5,12 +5,12 @@
 	<key>IBFramework Version</key>
 	<string>629</string>
 	<key>IBLastKnownRelativeProjectPath</key>
-	<string>../../sfCubed.xcodeproj</string>
+	<string>../sfCubed.xcodeproj</string>
 	<key>IBOldestOS</key>
 	<integer>5</integer>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>385</integer>
+		<integer>8</integer>
 	</array>
 	<key>IBSystem Version</key>
 	<string>9D34</string>

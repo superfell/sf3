@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2008 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,31 +19,44 @@
 // THE SOFTWARE.
 //
 
+#import "ProtectController.h"
+#import "SalesforceObjectChangeSummary.h"
 
-#import <Cocoa/Cocoa.h>
+@implementation ProtectController
 
-@class ZKSforceClient;
-@class ISyncSession;
-@class Mappers;
-@class SyncOptions;
-
-@interface SyncRunner : NSObject {
-	ZKSforceClient		*sforce;
-	ISyncSession		*session;	
-	Mappers				*mappers;
-
-	NSString			*status;
-	NSString			*status2;
-	double				progress;
-	SyncOptions			*options;
+-(id)initWithChanges:(SalesforceChangeSummary *)s {
+	self = [super init];
+	summary = [s retain];
+	return self;
 }
 
-+(ISyncClient *)syncClient;
+-(void)dealloc {
+	[summary release];
+	[super dealloc];
+}
 
--(id)initWithSforceSession:(ZKSforceClient *)sfclient;
--(BOOL)performSync:(SyncOptions *)options;
+// returns true if the user selected to continue with the sync
+-(BOOL)shouldContinueSync {
+	[NSBundle loadNibNamed:@"protect.nib" owner:self];
+	[table setDelegate:self];
+	[summary removeEntitiesWithNoChanges];
+	[table setDataSource:summary];
+	[table reloadData];
+	
+	BOOL cont = [NSApp runModalForWindow:window] == NSRunStoppedResponse;
+	[window orderOut:self];
+	[table release];
+	window = nil;
+	table = nil;
+	return cont;
+}
 
--(NSString *)status;
--(NSString *)status2;
--(double)progress;
+-(IBAction)cancelSync:(id)sender {
+	[NSApp abortModal];
+}
+
+-(IBAction)continueSync:(id)sender {
+	[NSApp stopModal];
+}
+
 @end

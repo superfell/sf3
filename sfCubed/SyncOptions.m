@@ -34,6 +34,7 @@
 	limitEventSyncToOwner	= [ud boolForKey:PREF_MY_EVENTS];
 	syncTasks				= [ud boolForKey:PREF_SYNC_TASKS];
 	limitTaskSyncToOwner	= [ud boolForKey:PREF_MY_TASKS];
+	protectSfdcLimit		= [ud boolForKey:PREF_ENABLE_PROTECT_SFDC] ? [ud integerForKey:PREF_PROTECT_SFDC_LIMIT] : -1;
 	return self;
 }
 
@@ -59,6 +60,10 @@
 
 -(BOOL)limitTaskSyncToOwner {
 	return limitTaskSyncToOwner;
+}
+
+-(BOOL)shouldShowUserWarningOnSfdcChanges:(int)totalChanges {
+	return (protectSfdcLimit >= 0) && (totalChanges > protectSfdcLimit);
 }
 
 @end

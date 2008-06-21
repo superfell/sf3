@@ -22,6 +22,7 @@
 
 #import "Mappers.h"
 #import "Constants.h"
+#import "ActivityMapper.h"
 
 @interface Mappers (Private)
 - (NSArray *)accumulate:(SEL)sel;
@@ -45,9 +46,8 @@
 
 - (void)addMapper:(BaseMapper *)m {
 	[mappers addObject:m];
-	// todo, make "BaseMapper may not respond to -setCalendarTracker" warning go away
 	if ([m respondsToSelector:@selector(setCalendarTracker:)])
-		[m setCalendarTracker:calendar];
+		[(id)m setCalendarTracker:calendar];
 }
 
 // when we're done pushing, we need to push the calendar entity if needed
@@ -84,11 +84,6 @@
 	[mappers makeObjectsPerformSelector:@selector(setSession:) withObject:syncSession];
 }
 
-- (void)setAccumulator:(DeleteAccumulator *)acc;
-{
-	[mappers makeObjectsPerformSelector:@selector(setAccumulator:) withObject:acc];
-}
-
 - (NSEnumerator *)objectEnumerator
 {
 	return [mappers objectEnumerator];
@@ -98,4 +93,5 @@
 {
 	return [mappers count];
 }
+
 @end

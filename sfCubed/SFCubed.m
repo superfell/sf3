@@ -178,14 +178,14 @@ static const int SFC_GO = 42;
 	if (ok) {
 		[self registerForOtherClients];
 		if ([[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL] > 0)
-			[self setStatus:@"Syncronization complete, auto sync enabled"];
+			[self setStatus:@"Synchronization complete, auto sync enabled"];
 		else
-			[self setStatus:@"Syncronization complete"];
+			[self setStatus:@"Synchronization complete"];
 	
 		[self setStatus2:@""];	
 		[[NSUserDefaults standardUserDefaults] setObject:[NSCalendarDate date] forKey:PREF_LAST_SYNC_DATE];
 		[self showLastSyncStatus];
-	}
+	} 
 	return ok;
 }
 

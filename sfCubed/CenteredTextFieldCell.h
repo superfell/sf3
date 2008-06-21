@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2008 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,31 +19,11 @@
 // THE SOFTWARE.
 //
 
-
 #import <Cocoa/Cocoa.h>
 
-@class ZKSforceClient;
-@class ISyncSession;
-@class Mappers;
-@class SyncOptions;
 
-@interface SyncRunner : NSObject {
-	ZKSforceClient		*sforce;
-	ISyncSession		*session;	
-	Mappers				*mappers;
+@interface CenteredTextFieldCell : NSTextFieldCell {
 
-	NSString			*status;
-	NSString			*status2;
-	double				progress;
-	SyncOptions			*options;
 }
 
-+(ISyncClient *)syncClient;
-
--(id)initWithSforceSession:(ZKSforceClient *)sfclient;
--(BOOL)performSync:(SyncOptions *)options;
-
--(NSString *)status;
--(NSString *)status2;
--(double)progress;
 @end

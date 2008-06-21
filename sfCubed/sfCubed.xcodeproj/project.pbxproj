@@ -44,6 +44,9 @@
 		F4725BA70AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725BA50AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m */; };
 		F4725C200AF8696800E2CE76 /* EventFieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725C1E0AF8696800E2CE76 /* EventFieldMappingInfo.m */; };
 		F4725C520AF8704300E2CE76 /* CalendarTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725C500AF8704300E2CE76 /* CalendarTracker.m */; };
+		F481835F0E00CF22008A0797 /* SalesforceObjectChangeSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */; };
+		F48183630E00CF9F008A0797 /* protect.nib in Resources */ = {isa = PBXBuildFile; fileRef = F48183620E00CF9F008A0797 /* protect.nib */; };
+		F48183FC0E00DE86008A0797 /* ProtectController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48183FB0E00DE86008A0797 /* ProtectController.m */; };
 		F48406A00B58B85600F49EBE /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F484069A0B58B85600F49EBE /* ExceptionHandling.framework */; };
 		F48B505E0AA9369C002326C6 /* Mappers.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B505D0AA9369B002326C6 /* Mappers.m */; };
 		F491205C0A9782F4007F6F32 /* SFCubed.m in Sources */ = {isa = PBXBuildFile; fileRef = F491205A0A9782F4007F6F32 /* SFCubed.m */; };
@@ -61,6 +64,7 @@
 		F49C44D10B12D91500A02F06 /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44BB0B12D91500A02F06 /* zkUserInfo.m */; };
 		F49C44D30B12D91500A02F06 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */; };
 		F49D28050AFD3BC300FF13EA /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F49D28040AFD3BC300FF13EA /* Credits.html */; };
+		F4B79A400E0C7F2600DFD7E4 /* CenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */; };
 		F4CEA9B90A9EDA3900B04BD0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4CEA9B80A9EDA3900B04BD0 /* readme.txt */; };
 		F4DD01440AA69C5C0033BB4B /* TaskMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DD01430AA69C5C0033BB4B /* TaskMapper.m */; };
 		F4E7C06C0AE5E1960013BA0A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
@@ -152,6 +156,11 @@
 		F4725C1E0AF8696800E2CE76 /* EventFieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFieldMappingInfo.m; sourceTree = "<group>"; };
 		F4725C4F0AF8704300E2CE76 /* CalendarTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTracker.h; sourceTree = "<group>"; };
 		F4725C500AF8704300E2CE76 /* CalendarTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTracker.m; sourceTree = "<group>"; };
+		F481835D0E00CF22008A0797 /* SalesforceObjectChangeSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesforceObjectChangeSummary.h; sourceTree = "<group>"; };
+		F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesforceObjectChangeSummary.m; sourceTree = "<group>"; };
+		F48183620E00CF9F008A0797 /* protect.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = protect.nib; sourceTree = "<group>"; };
+		F48183FA0E00DE86008A0797 /* ProtectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtectController.h; sourceTree = "<group>"; };
+		F48183FB0E00DE86008A0797 /* ProtectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtectController.m; sourceTree = "<group>"; };
 		F484069A0B58B85600F49EBE /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = /System/Library/Frameworks/ExceptionHandling.framework; sourceTree = "<absolute>"; };
 		F48B505C0AA9369B002326C6 /* Mappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mappers.h; sourceTree = "<group>"; };
 		F48B505D0AA9369B002326C6 /* Mappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mappers.m; sourceTree = "<group>"; };
@@ -182,6 +191,8 @@
 		F49C44BC0B12D91500A02F06 /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../sforce/zkXmlDeserializer.h; sourceTree = SOURCE_ROOT; };
 		F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../sforce/zkXmlDeserializer.m; sourceTree = SOURCE_ROOT; };
 		F49D28040AFD3BC300FF13EA /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		F4B79A3E0E0C7F2600DFD7E4 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteredTextFieldCell.h; sourceTree = "<group>"; };
+		F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteredTextFieldCell.m; sourceTree = "<group>"; };
 		F4CEA9B80A9EDA3900B04BD0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		F4DD01420AA69C5C0033BB4B /* TaskMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMapper.h; sourceTree = "<group>"; };
 		F4DD01430AA69C5C0033BB4B /* TaskMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMapper.m; sourceTree = "<group>"; };
@@ -217,6 +228,10 @@
 				F46A32EA0A9CB549002D6696 /* Constants.m */,
 				F44604DB0AA3EE4C0036D487 /* SFPrefs.h */,
 				F44604DC0AA3EE4C0036D487 /* SFPrefs.m */,
+				F48183FA0E00DE86008A0797 /* ProtectController.h */,
+				F48183FB0E00DE86008A0797 /* ProtectController.m */,
+				F4B79A3E0E0C7F2600DFD7E4 /* CenteredTextFieldCell.h */,
+				F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -292,6 +307,7 @@
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				F49120A20A978E1E007F6F32 /* ClientDescription.plist */,
 				F49D28040AFD3BC300FF13EA /* Credits.html */,
+				F48183620E00CF9F008A0797 /* protect.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -362,6 +378,8 @@
 				F422B36A0AA173B800A7A7D5 /* SyncFilters.m */,
 				F4F061B50D60197E003163D4 /* SyncOptions.h */,
 				F4F061B60D60197E003163D4 /* SyncOptions.m */,
+				F481835D0E00CF22008A0797 /* SalesforceObjectChangeSummary.h */,
+				F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */,
 			);
 			name = "Sync Driver";
 			sourceTree = "<group>";
@@ -473,6 +491,7 @@
 				F42A02AE0B58A9F600C8D9D5 /* minus-8.png in Resources */,
 				F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */,
 				F40B3A5C0C4B27B40014E88C /* Login.nib in Resources */,
+				F48183630E00CF9F008A0797 /* protect.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +545,9 @@
 				F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */,
 				F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */,
 				F4F061B70D60197E003163D4 /* SyncOptions.m in Sources */,
+				F481835F0E00CF22008A0797 /* SalesforceObjectChangeSummary.m in Sources */,
+				F48183FC0E00DE86008A0797 /* ProtectController.m in Sources */,
+				F4B79A400E0C7F2600DFD7E4 /* CenteredTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

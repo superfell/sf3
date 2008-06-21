@@ -22,8 +22,7 @@
 #import "zkSaveResult.h"
 #import "AccItem.h"
 
-
-// this can be cleaned up, we're only using it for deletes now.
+static const int MAX_IN_ONE_BATCH = 50;
 
 @implementation DeleteAccumulator
 
@@ -45,18 +44,20 @@
 
 - (void)enqueueDelete:(NSString *)sfId {
 	[deletes addObject:sfId];
-	if ([deletes count] > 25)
-		[self flush];
 }
 
-- (void)doDeletes {
-	NSArray * results = [sforce delete:deletes];
+- (int)count {
+	return [deletes count];
+}
+
+- (void)doDeletes:(NSArray *)idsToDelete {
+	NSArray * results = [sforce delete:idsToDelete];
 	UInt32 i;
 	for (i = 0; i < [results count]; i++) {
 		ZKSaveResult * sr = [results objectAtIndex:i];
 		if ([sr success] || [[sr statusCode] isEqualToString:@"ENTITY_IS_DELETED"]) {
 			// either the delete was succesful, or we've already deleted the item in salesforce, eitherway we can accept this one.
-			[session clientAcceptedChangesForRecordWithIdentifier:[deletes objectAtIndex:i] formattedRecord:nil newRecordIdentifier:nil];
+			[session clientAcceptedChangesForRecordWithIdentifier:[idsToDelete objectAtIndex:i] formattedRecord:nil newRecordIdentifier:nil];
 		} else {
 			NSLog(@"Error deleting :%@ -> %@", [deletes objectAtIndex:i], sr);
 		}
@@ -64,11 +65,19 @@
 	[session clientCommittedAcceptedChanges];
 }
 
-- (void)flush {
+- (void)performDeletes {
 	if ([deletes count] == 0) return;
 	NSLog(@"DeleteAccumulator about to remove %d items", [deletes count]);
-	[self doDeletes];
-	[deletes removeAllObjects];
+	while ([deletes count] > 0) {
+		if ([deletes count] <= MAX_IN_ONE_BATCH) {
+			[self doDeletes:deletes];
+			[deletes removeAllObjects];
+		} else {
+			NSRange rng = NSMakeRange(0, MAX_IN_ONE_BATCH);
+			[self doDeletes:[deletes subarrayWithRange:rng]];
+			[deletes removeObjectsInRange:rng];
+		}
+	}
 }
 
 @end

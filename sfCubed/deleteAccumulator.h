@@ -33,6 +33,7 @@
 - (id)initWithSession:(ISyncSession *)session sforce:(ZKSforceClient *)sforce;
 
 - (void)enqueueDelete:(NSString *)sfId;
-- (void)flush;
+- (int)count;
+- (void)performDeletes;
 @end
 
