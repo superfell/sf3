@@ -45,9 +45,8 @@
 	
 	BOOL cont = [NSApp runModalForWindow:window] == NSRunStoppedResponse;
 	[window orderOut:self];
-	[table release];
-	window = nil;
-	table = nil;
+	[table setDelegate:nil];
+	[table setDataSource:nil];
 	return cont;
 }
 
