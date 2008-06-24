@@ -96,6 +96,13 @@ static const int SFC_GO = 42;
 	[logDrawer toggle:sender];
 }
 
+-(void)checkShowPrefs {
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:PREF_SEEN_PREFS]) {
+		[self showPrefsWindow:self];
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:PREF_SEEN_PREFS];
+	}
+}
+
 - (void)checkShowWelcome:(NSNotification *)n
 {
 	[mainBox setGradientStartColor:[NSColor colorWithCalibratedRed:0.55 green:0.20 blue:0.10 alpha:0.20]];
@@ -104,6 +111,8 @@ static const int SFC_GO = 42;
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_SHOW_WELCOME]) {
 		[syncNowMenuItem setEnabled:NO];
 		[NSApp beginSheet:welcomeWindow modalForWindow:myWindow modalDelegate:self didEndSelector:nil contextInfo:nil];
+	} else {
+		[self checkShowPrefs];
 	}
 }
 
@@ -112,6 +121,7 @@ static const int SFC_GO = 42;
 	[NSApp endSheet:welcomeWindow];
 	[welcomeWindow orderOut:self];
 	[syncNowMenuItem setEnabled:YES];
+	[self checkShowPrefs];
 }
 
 - (IBAction)showPrefsWindow:(id)sender

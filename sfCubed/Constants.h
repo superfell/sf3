@@ -31,6 +31,7 @@ extern NSString *Entity_Event;
 
 extern NSString *key_RecordEntityName;
 
+extern NSString *PREF_SEEN_PREFS;
 extern NSString *PREF_SHOW_WELCOME;
 extern NSString *PREF_SERVERS;
 extern NSString *PREF_SERVER;

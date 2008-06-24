@@ -33,6 +33,7 @@ NSString *Entity_Event   = @"com.apple.calendars.Event";
 NSString *key_RecordEntityName = @"com.apple.syncservices.RecordEntityName";
 
 // user preferences
+NSString *PREF_SEEN_PREFS = @"SEEN_PREFS";
 NSString *PREF_SHOW_WELCOME  = @"SHOW_WELCOME";
 NSString *PREF_SERVERS = @"servers";
 NSString *PREF_SERVER = @"server";
