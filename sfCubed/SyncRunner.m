@@ -178,7 +178,7 @@
 	// start a sync session
 	session = [ISyncSession beginSessionWithClient:syncClient
                 entityNames:entityNames
-                beforeDate:[NSDate dateWithTimeIntervalSinceNow:25]];
+                beforeDate:[NSDate distantFuture]];
 
 	if (!session) {
 		[self setStatus:@"unable to start a sync session"];
@@ -211,7 +211,7 @@
 	[mappers pushFinished:[[sforce currentUserInfo] userId]];
 	
 	BOOL finish = YES;
-	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate dateWithTimeIntervalSinceNow:60]]) {
+	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate distantFuture]]) {
 		finish = [self pullChanges];
 		if (finish)
 			[session clientCommittedAcceptedChanges];
