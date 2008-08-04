@@ -30,6 +30,7 @@
 	BOOL	syncTasks;
 	BOOL	limitTaskSyncToOwner;
 	int		protectSfdcLimit;
+	BOOL	autoJoinSync;
 }
 
 -(id)initFromUserDefaults;
@@ -41,5 +42,5 @@
 -(BOOL)syncTasks;
 -(BOOL)limitTaskSyncToOwner;
 -(BOOL)shouldShowUserWarningOnSfdcChanges:(int)totalChanges;
-
+-(BOOL)autoJoinSync;
 @end

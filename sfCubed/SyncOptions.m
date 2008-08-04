@@ -35,6 +35,7 @@
 	syncTasks				= [ud boolForKey:PREF_SYNC_TASKS];
 	limitTaskSyncToOwner	= [ud boolForKey:PREF_MY_TASKS];
 	protectSfdcLimit		= [ud boolForKey:PREF_ENABLE_PROTECT_SFDC] ? [ud integerForKey:PREF_PROTECT_SFDC_LIMIT] : -1;
+	autoJoinSync			= [ud boolForKey:PREF_AUTO_JOIN_SYNC];
 	return self;
 }
 
@@ -64,6 +65,10 @@
 
 -(BOOL)shouldShowUserWarningOnSfdcChanges:(int)totalChanges {
 	return (protectSfdcLimit >= 0) && (totalChanges > protectSfdcLimit);
+}
+
+-(BOOL)autoJoinSync {
+	return autoJoinSync;
 }
 
 @end

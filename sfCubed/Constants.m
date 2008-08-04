@@ -48,6 +48,8 @@ NSString *PREF_MY_EVENTS   = @"MY_EVENTS";
 
 // how often to do auto sync
 NSString *PREF_AUTO_SYNC_INTERVAL = @"AUTO_SYNC_INTERVAL";
+// do we want to sync when sync services says there's a sync ?
+NSString *PREF_AUTO_JOIN_SYNC = @"AUTO_JOIN_SYNC";
 
 // when did we last sync ?
 NSString *PREF_LAST_SYNC_DATE = @"LAST_SYNC_DATE";

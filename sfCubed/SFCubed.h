@@ -37,6 +37,7 @@
 #import "ZKLoginController.h"
 
 @class DeleteAccumulator;
+@class SyncOptions;
 
 @interface SFCubed : NSObject {
 	IBOutlet RoundedBox 	*mainBox;
@@ -83,6 +84,6 @@
 
 - (IBAction)unregisterClient:(id)sender;
 - (void)client:(ISyncClient *)client willSyncEntityNames:(NSArray  *)entityNames;
-- (void)registerForOtherClients;
+- (void)registerForOtherClients:(SyncOptions *)options;
 
 @end

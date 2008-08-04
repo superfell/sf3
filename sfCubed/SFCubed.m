@@ -177,8 +177,9 @@ static const int SFC_GO = 42;
 	[self bind:@"status2" toObject:runner withKeyPath:@"status2" options:nil];
 	[self bind:@"progress" toObject:runner withKeyPath:@"progress" options:nil];
 	BOOL ok = NO;
+	SyncOptions *options = [[[SyncOptions alloc] initFromUserDefaults] autorelease];
 	@try {
-		ok = [runner performSync:[[[SyncOptions alloc] initFromUserDefaults] autorelease]];
+		ok = [runner performSync:options];
 	} @finally {
 		[self unbind:@"status"];
 		[self unbind:@"status2"];
@@ -186,7 +187,7 @@ static const int SFC_GO = 42;
 		[runner release];
 	}
 	if (ok) {
-		[self registerForOtherClients];
+		[self registerForOtherClients:options];
 		if ([[NSUserDefaults standardUserDefaults] integerForKey:PREF_AUTO_SYNC_INTERVAL] > 0)
 			[self setStatus:@"Synchronization complete, auto sync enabled"];
 		else
@@ -284,10 +285,8 @@ static const int SFC_GO = 42;
 	return [statusText2 stringValue];
 }
 
-- (void)registerForOtherClients
-{	
-	if (!registeredWithOtherClients)
-	{
+-(void)registerForOtherClients:(SyncOptions *)options {	
+	if ((!registeredWithOtherClients) && [options autoJoinSync]) {
 		ISyncClient * syncClient = [SyncRunner syncClient];
 		[syncClient setShouldSynchronize:YES withClientsOfType:ISyncClientTypeApplication];
 		[syncClient setShouldSynchronize:YES withClientsOfType:ISyncClientTypeServer];
@@ -297,22 +296,20 @@ static const int SFC_GO = 42;
 	}
 }
 
-- (void)client:(ISyncClient *)client willSyncEntityNames:(NSArray *)entityNames
-{
-	NSLog(@"client:%@ will Sync Entity Names: %@", [client displayName], entityNames);
-	[self syncNow:self];
+-(void)client:(ISyncClient *)client willSyncEntityNames:(NSArray *)entityNames {
+	NSLog(@"SyncServices is strting sync for Entity Names: %@", entityNames);
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PREF_AUTO_JOIN_SYNC])
+		[self syncNow:self];
 }
  
-- (IBAction)unregisterClient:(id)sender
-{
-	NSAlert * alert = [[NSAlert alloc] init];
+-(IBAction)unregisterClient:(id)sender {
+	NSAlert * alert = [[[NSAlert alloc] init] autorelease];
 	[alert addButtonWithTitle:@"Cancel"];
 	[alert addButtonWithTitle:@"Reset Sync"];
 	[alert setMessageText:@"Reset Sync History ?"];
 	[alert setInformativeText:@"This will clear all sync history (but not any data), next time you sync it will be just like the first sync."];
-	NSLog(@"runModal %d", [alert runModal]);
-	[alert release];
-	[[ISyncManager sharedManager] unregisterClient:[SyncRunner syncClient]];
+	if (NSAlertFirstButtonReturn != [alert runModal])
+		[[ISyncManager sharedManager] unregisterClient:[SyncRunner syncClient]];
 }
 
 @end

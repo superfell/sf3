@@ -38,6 +38,7 @@
 	[defaults setObject:[NSNumber numberWithInt:1]	  forKey:PREF_CALENDAR_SUFFIX];
 	[defaults setObject:[NSNumber numberWithInt:0]    forKey:PREF_PROTECT_SFDC_LIMIT];
 	[defaults setObject:[NSNumber numberWithBool:YES] forKey:PREF_ENABLE_PROTECT_SFDC];
+	[defaults setObject:[NSNumber numberWithBool:YES] forKey:PREF_AUTO_JOIN_SYNC];
 	
 	NSString *prod = @"https://www.salesforce.com";
 	NSString *test = @"https://test.salesforce.com";
