@@ -124,32 +124,31 @@ static const int SFC_GO = 42;
 	[self checkShowPrefs];
 }
 
-- (IBAction)showPrefsWindow:(id)sender
-{
+-(IBAction)showPrefsWindow:(id)sender {
 	[NSApp beginSheet:prefsWindow modalForWindow:myWindow modalDelegate:self didEndSelector:nil contextInfo:nil];
 }
 
-- (IBAction)closePrefsWindow:(id)sender
-{
+-(IBAction)closePrefsWindow:(id)sender {
 	[NSApp endSheet:prefsWindow];
 	[prefsWindow orderOut:self];
 }
 
-- (IBAction)showLogin:(id)sender
-{
-	if (login == nil) 
+-(IBAction)showLogin:(id)sender {
+	if (login == nil) {
 		login = [[ZKLoginController alloc] init];
-	
+		NSDictionary *plist = [[NSBundle mainBundle] infoDictionary];
+		NSString *cid = [NSString stringWithFormat:@"%@/%@", [plist objectForKey:@"clientId"], [plist objectForKey:@"CFBundleVersion"]];
+		[login setClientId:cid];
+	}	
 	if (![sforce loggedIn])
 		[login showLoginSheet:myWindow target:self selector:@selector(login:)];
 	else 
 		[self triggerSyncNow:self];
 }
 
-- (IBAction)login:(ZKSforceClient *)authenticatedClientStub {
-	ZKSforceClient *t = sforce;
+-(IBAction)login:(ZKSforceClient *)authenticatedClientStub {
+	[sforce autorelease];
 	sforce = [authenticatedClientStub retain];
-	[t release];
 	ZKDescribeSObject *d = [sforce describeSObject:@"Task"];
 	NSString *sUrl = [d urlNew];
 	NSURL *url = [NSURL URLWithString:sUrl];
@@ -158,20 +157,19 @@ static const int SFC_GO = 42;
 	[self triggerSyncNow:self];
 }
 
-- (IBAction)launchSfdcInBrowser:(id)sender
-{
+-(IBAction)launchSfdcInBrowser:(id)sender {
 	NSURL * fd = [NSURL URLWithString:[NSString stringWithFormat:@"/secur/frontdoor.jsp?sid=%@", [sforce sessionId]] relativeToURL:baseUiUrl];
 	[[NSWorkspace sharedWorkspace] openURL:fd];
 }
 
-- (IBAction)triggerSyncNow:(id)sender {
+-(IBAction)triggerSyncNow:(id)sender {
 	[trickleTimer invalidate];
 	[trickleTimer release];
 	trickleTimer = nil;
 	[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(syncNow:) userInfo:nil repeats:NO];
 }
 
-- (BOOL)performSync {
+-(BOOL)performSync {
 	SyncRunner *runner = [[SyncRunner alloc] initWithSforceSession:sforce];
 	[self bind:@"status" toObject:runner withKeyPath:@"status" options:nil];
 	[self bind:@"status2" toObject:runner withKeyPath:@"status2" options:nil];
@@ -200,8 +198,7 @@ static const int SFC_GO = 42;
 	return ok;
 }
 
-- (IBAction)syncNow:(id)sender
-{
+-(IBAction)syncNow:(id)sender {
 	NSString *oldTitle = [mainBox title];
 	[syncNowMenuItem setEnabled:FALSE];
 	[mainBox setTitle:@"Synchronizing ..."];
