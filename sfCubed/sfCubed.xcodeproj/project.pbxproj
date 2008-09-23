@@ -1,0 +1,674 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B4D1FB700C2079B50053F6A2 /* zkBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D1FB6C0C2079B50053F6A2 /* zkBaseClient.m */; };
+		B4D1FB720C2079B50053F6A2 /* ZKPartnerEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D1FB6E0C2079B50053F6A2 /* ZKPartnerEnvelope.m */; };
+		F40B3A5C0C4B27B40014E88C /* Login.nib in Resources */ = {isa = PBXBuildFile; fileRef = F40B3A570C4B27B40014E88C /* Login.nib */; };
+		F40B3A600C4B27C70014E88C /* ZKLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40B3A5E0C4B27C70014E88C /* ZKLoginController.m */; };
+		F40B3A6B0C4B28190014E88C /* credential.m in Sources */ = {isa = PBXBuildFile; fileRef = F40B3A690C4B28190014E88C /* credential.m */; };
+		F40D1D160AA775E200F41D87 /* sf.icns in Resources */ = {isa = PBXBuildFile; fileRef = F40D1D150AA775E200F41D87 /* sf.icns */; };
+		F40EE56E0BACB0B900796CF4 /* PulledItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F40EE56C0BACB0B900796CF4 /* PulledItem.m */; };
+		F4139D390B3A36840064489A /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = F4139D330B3A36840064489A /* CTGradient.m */; };
+		F4139D3B0B3A36840064489A /* RoundedBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F4139D350B3A36840064489A /* RoundedBox.m */; };
+		F41652E60C2DF198007B541E /* MyISyncChange.m in Sources */ = {isa = PBXBuildFile; fileRef = F41652E40C2DF198007B541E /* MyISyncChange.m */; };
+		F422B23A0AA0FB7200A7A7D5 /* LookupInfoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */; };
+		F422B36B0AA173B800A7A7D5 /* SyncFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F422B36A0AA173B800A7A7D5 /* SyncFilters.m */; };
+		F42A02AE0B58A9F600C8D9D5 /* minus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AC0B58A9F600C8D9D5 /* minus-8.png */; };
+		F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F42A02AD0B58A9F600C8D9D5 /* plus-8.png */; };
+		F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = F4415B130D5FD09600A69CCB /* deleteAccumulator.m */; };
+		F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = F44424AE0D600003000B3C7D /* SyncRunner.m */; };
+		F44604DD0AA3EE4C0036D487 /* SFPrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F44604DC0AA3EE4C0036D487 /* SFPrefs.m */; };
+		F44ADABD0C337BB20031F832 /* ActivityMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F44ADABB0C337BB20031F832 /* ActivityMapper.m */; };
+		F458C04F0B6B015C00084F43 /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F458C04B0B6B015C00084F43 /* ZKPicklistEntry.m */; };
+		F458C0510B6B015C00084F43 /* ZKRecordTypeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F458C04D0B6B015C00084F43 /* ZKRecordTypeInfo.m */; };
+		F465A5630AAFD4EA004AC796 /* FieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F465A5620AAFD4EA004AC796 /* FieldMappingInfo.m */; };
+		F467A0D70AFD757300F0C9E8 /* sf3_64.png in Resources */ = {isa = PBXBuildFile; fileRef = F467A0D50AFD757300F0C9E8 /* sf3_64.png */; };
+		F467A0EB0AFD83C200F0C9E8 /* sf3_64b.png in Resources */ = {isa = PBXBuildFile; fileRef = F467A0EA0AFD83C200F0C9E8 /* sf3_64b.png */; };
+		F46A31EB0A9C1EF4002D6696 /* AccItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A31EA0A9C1EF4002D6696 /* AccItem.m */; };
+		F46A32D80A9CACF2002D6696 /* BaseMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A32D70A9CACF2002D6696 /* BaseMapper.m */; };
+		F46A32DB0A9CAD69002D6696 /* ContactMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A32DA0A9CAD69002D6696 /* ContactMapper.m */; };
+		F46A32EB0A9CB549002D6696 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = F46A32EA0A9CB549002D6696 /* Constants.m */; };
+		F46F3F4B0ABFB0AF00481FA1 /* TaskFieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F46F3F4A0ABFB0AF00481FA1 /* TaskFieldMappingInfo.m */; };
+		F47152120A9AD1D0003EF07B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47152110A9AD1D0003EF07B /* Security.framework */; };
+		F4725B9C0AF860F700E2CE76 /* EventMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725B9A0AF860F700E2CE76 /* EventMapper.m */; };
+		F4725BA70AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725BA50AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m */; };
+		F4725C200AF8696800E2CE76 /* EventFieldMappingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725C1E0AF8696800E2CE76 /* EventFieldMappingInfo.m */; };
+		F4725C520AF8704300E2CE76 /* CalendarTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F4725C500AF8704300E2CE76 /* CalendarTracker.m */; };
+		F481835F0E00CF22008A0797 /* SalesforceObjectChangeSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */; };
+		F48183630E00CF9F008A0797 /* protect.nib in Resources */ = {isa = PBXBuildFile; fileRef = F48183620E00CF9F008A0797 /* protect.nib */; };
+		F48183FC0E00DE86008A0797 /* ProtectController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48183FB0E00DE86008A0797 /* ProtectController.m */; };
+		F48406A00B58B85600F49EBE /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F484069A0B58B85600F49EBE /* ExceptionHandling.framework */; };
+		F48B505E0AA9369C002326C6 /* Mappers.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B505D0AA9369B002326C6 /* Mappers.m */; };
+		F491205C0A9782F4007F6F32 /* SFCubed.m in Sources */ = {isa = PBXBuildFile; fileRef = F491205A0A9782F4007F6F32 /* SFCubed.m */; };
+		F49120A30A978E1E007F6F32 /* ClientDescription.plist in Resources */ = {isa = PBXBuildFile; fileRef = F49120A20A978E1E007F6F32 /* ClientDescription.plist */; };
+		F49120D20A97931F007F6F32 /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49120D10A97931F007F6F32 /* SyncServices.framework */; };
+		F49C44BF0B12D91500A02F06 /* zkChildRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44A90B12D91500A02F06 /* zkChildRelationship.m */; };
+		F49C44C10B12D91500A02F06 /* zkDescribeField.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44AB0B12D91500A02F06 /* zkDescribeField.m */; };
+		F49C44C30B12D91500A02F06 /* zkDescribeSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44AD0B12D91500A02F06 /* zkDescribeSObject.m */; };
+		F49C44C50B12D91500A02F06 /* zkEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44AF0B12D91500A02F06 /* zkEnvelope.m */; };
+		F49C44C70B12D91500A02F06 /* zkQueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44B10B12D91500A02F06 /* zkQueryResult.m */; };
+		F49C44C90B12D91500A02F06 /* zkSaveResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44B30B12D91500A02F06 /* zkSaveResult.m */; };
+		F49C44CB0B12D91500A02F06 /* zkSforceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44B50B12D91500A02F06 /* zkSforceClient.m */; };
+		F49C44CD0B12D91500A02F06 /* zkSoapException.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44B70B12D91500A02F06 /* zkSoapException.m */; };
+		F49C44CF0B12D91500A02F06 /* zkSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44B90B12D91500A02F06 /* zkSObject.m */; };
+		F49C44D10B12D91500A02F06 /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44BB0B12D91500A02F06 /* zkUserInfo.m */; };
+		F49C44D30B12D91500A02F06 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */; };
+		F49D28050AFD3BC300FF13EA /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F49D28040AFD3BC300FF13EA /* Credits.html */; };
+		F4B79A400E0C7F2600DFD7E4 /* CenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */; };
+		F4CEA9B90A9EDA3900B04BD0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4CEA9B80A9EDA3900B04BD0 /* readme.txt */; };
+		F4DD01440AA69C5C0033BB4B /* TaskMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DD01430AA69C5C0033BB4B /* TaskMapper.m */; };
+		F4E7C06C0AE5E1960013BA0A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
+		F4E7C06F0AE5E19B0013BA0A /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
+		F4F061B70D60197E003163D4 /* SyncOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F061B60D60197E003163D4 /* SyncOptions.m */; };
+		F4F866510B6B09D3004CB54D /* AcceptChangeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F4E7BFFA0AE5DFE50013BA0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F4E7C06F0AE5E19B0013BA0A /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* sfCubed_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfCubed_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* sfCubed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sfCubed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D1FB6B0C2079B50053F6A2 /* zkBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkBaseClient.h; path = ../sforce/zkBaseClient.h; sourceTree = SOURCE_ROOT; };
+		B4D1FB6C0C2079B50053F6A2 /* zkBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkBaseClient.m; path = ../sforce/zkBaseClient.m; sourceTree = SOURCE_ROOT; };
+		B4D1FB6D0C2079B50053F6A2 /* ZKPartnerEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ZKPartnerEnvelope.h; path = ../sforce/ZKPartnerEnvelope.h; sourceTree = SOURCE_ROOT; };
+		B4D1FB6E0C2079B50053F6A2 /* ZKPartnerEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ZKPartnerEnvelope.m; path = ../sforce/ZKPartnerEnvelope.m; sourceTree = SOURCE_ROOT; };
+		F40B3A570C4B27B40014E88C /* Login.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Login.nib; path = ../common/Login.nib; sourceTree = SOURCE_ROOT; };
+		F40B3A5D0C4B27C70014E88C /* ZKLoginController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ZKLoginController.h; path = ../common/ZKLoginController.h; sourceTree = SOURCE_ROOT; };
+		F40B3A5E0C4B27C70014E88C /* ZKLoginController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ZKLoginController.m; path = ../common/ZKLoginController.m; sourceTree = SOURCE_ROOT; };
+		F40B3A680C4B28190014E88C /* credential.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = credential.h; path = ../common/credential.h; sourceTree = SOURCE_ROOT; };
+		F40B3A690C4B28190014E88C /* credential.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = credential.m; path = ../common/credential.m; sourceTree = SOURCE_ROOT; };
+		F40D1D150AA775E200F41D87 /* sf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sf.icns; sourceTree = "<group>"; };
+		F40EE56B0BACB0B900796CF4 /* PulledItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulledItem.h; sourceTree = "<group>"; };
+		F40EE56C0BACB0B900796CF4 /* PulledItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulledItem.m; sourceTree = "<group>"; };
+		F4139D320B3A36840064489A /* CTGradient.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTGradient.h; path = ../common/CTGradient.h; sourceTree = SOURCE_ROOT; };
+		F4139D330B3A36840064489A /* CTGradient.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTGradient.m; path = ../common/CTGradient.m; sourceTree = SOURCE_ROOT; };
+		F4139D340B3A36840064489A /* RoundedBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = RoundedBox.h; path = ../common/RoundedBox.h; sourceTree = SOURCE_ROOT; };
+		F4139D350B3A36840064489A /* RoundedBox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = RoundedBox.m; path = ../common/RoundedBox.m; sourceTree = SOURCE_ROOT; };
+		F41652E30C2DF198007B541E /* MyISyncChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyISyncChange.h; sourceTree = "<group>"; };
+		F41652E40C2DF198007B541E /* MyISyncChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyISyncChange.m; sourceTree = "<group>"; };
+		F422B2380AA0FB7200A7A7D5 /* LookupInfoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupInfoCache.h; sourceTree = "<group>"; };
+		F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookupInfoCache.m; sourceTree = "<group>"; };
+		F422B3690AA173B800A7A7D5 /* SyncFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncFilters.h; sourceTree = "<group>"; };
+		F422B36A0AA173B800A7A7D5 /* SyncFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncFilters.m; sourceTree = "<group>"; };
+		F42A02AC0B58A9F600C8D9D5 /* minus-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "minus-8.png"; path = "../common/minus-8.png"; sourceTree = SOURCE_ROOT; };
+		F42A02AD0B58A9F600C8D9D5 /* plus-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus-8.png"; path = "../common/plus-8.png"; sourceTree = SOURCE_ROOT; };
+		F4415B120D5FD09600A69CCB /* deleteAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteAccumulator.h; sourceTree = "<group>"; };
+		F4415B130D5FD09600A69CCB /* deleteAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteAccumulator.m; sourceTree = "<group>"; };
+		F44424AD0D600003000B3C7D /* SyncRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncRunner.h; sourceTree = "<group>"; };
+		F44424AE0D600003000B3C7D /* SyncRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncRunner.m; sourceTree = "<group>"; };
+		F44604DB0AA3EE4C0036D487 /* SFPrefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFPrefs.h; sourceTree = "<group>"; };
+		F44604DC0AA3EE4C0036D487 /* SFPrefs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SFPrefs.m; sourceTree = "<group>"; };
+		F44ADABA0C337BB20031F832 /* ActivityMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMapper.h; sourceTree = "<group>"; };
+		F44ADABB0C337BB20031F832 /* ActivityMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMapper.m; sourceTree = "<group>"; };
+		F458C04A0B6B015C00084F43 /* ZKPicklistEntry.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ZKPicklistEntry.h; path = ../sforce/ZKPicklistEntry.h; sourceTree = SOURCE_ROOT; };
+		F458C04B0B6B015C00084F43 /* ZKPicklistEntry.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistEntry.m; path = ../sforce/ZKPicklistEntry.m; sourceTree = SOURCE_ROOT; };
+		F458C04C0B6B015C00084F43 /* ZKRecordTypeInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ZKRecordTypeInfo.h; path = ../sforce/ZKRecordTypeInfo.h; sourceTree = SOURCE_ROOT; };
+		F458C04D0B6B015C00084F43 /* ZKRecordTypeInfo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ZKRecordTypeInfo.m; path = ../sforce/ZKRecordTypeInfo.m; sourceTree = SOURCE_ROOT; };
+		F465A5610AAFD4EA004AC796 /* FieldMappingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldMappingInfo.h; sourceTree = "<group>"; };
+		F465A5620AAFD4EA004AC796 /* FieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMappingInfo.m; sourceTree = "<group>"; };
+		F467A0D50AFD757300F0C9E8 /* sf3_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sf3_64.png; sourceTree = "<group>"; };
+		F467A0EA0AFD83C200F0C9E8 /* sf3_64b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sf3_64b.png; sourceTree = "<group>"; };
+		F46A31E90A9C1EF4002D6696 /* AccItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccItem.h; sourceTree = "<group>"; };
+		F46A31EA0A9C1EF4002D6696 /* AccItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccItem.m; sourceTree = "<group>"; };
+		F46A32D60A9CACF2002D6696 /* BaseMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMapper.h; sourceTree = "<group>"; };
+		F46A32D70A9CACF2002D6696 /* BaseMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMapper.m; sourceTree = "<group>"; };
+		F46A32D90A9CAD69002D6696 /* ContactMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactMapper.h; sourceTree = "<group>"; };
+		F46A32DA0A9CAD69002D6696 /* ContactMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactMapper.m; sourceTree = "<group>"; };
+		F46A32E90A9CB549002D6696 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F46A32EA0A9CB549002D6696 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		F46F3F490ABFB0AF00481FA1 /* TaskFieldMappingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskFieldMappingInfo.h; sourceTree = "<group>"; };
+		F46F3F4A0ABFB0AF00481FA1 /* TaskFieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskFieldMappingInfo.m; sourceTree = "<group>"; };
+		F47152110A9AD1D0003EF07B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		F4725B990AF860F700E2CE76 /* EventMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapper.h; sourceTree = "<group>"; };
+		F4725B9A0AF860F700E2CE76 /* EventMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventMapper.m; sourceTree = "<group>"; };
+		F4725BA40AF8647F00E2CE76 /* IdUrlFieldMappingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdUrlFieldMappingInfo.h; sourceTree = "<group>"; };
+		F4725BA50AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdUrlFieldMappingInfo.m; sourceTree = "<group>"; };
+		F4725C1D0AF8696800E2CE76 /* EventFieldMappingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventFieldMappingInfo.h; sourceTree = "<group>"; };
+		F4725C1E0AF8696800E2CE76 /* EventFieldMappingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventFieldMappingInfo.m; sourceTree = "<group>"; };
+		F4725C4F0AF8704300E2CE76 /* CalendarTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTracker.h; sourceTree = "<group>"; };
+		F4725C500AF8704300E2CE76 /* CalendarTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTracker.m; sourceTree = "<group>"; };
+		F481835D0E00CF22008A0797 /* SalesforceObjectChangeSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesforceObjectChangeSummary.h; sourceTree = "<group>"; };
+		F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesforceObjectChangeSummary.m; sourceTree = "<group>"; };
+		F48183620E00CF9F008A0797 /* protect.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = protect.nib; sourceTree = "<group>"; };
+		F48183FA0E00DE86008A0797 /* ProtectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtectController.h; sourceTree = "<group>"; };
+		F48183FB0E00DE86008A0797 /* ProtectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtectController.m; sourceTree = "<group>"; };
+		F484069A0B58B85600F49EBE /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = /System/Library/Frameworks/ExceptionHandling.framework; sourceTree = "<absolute>"; };
+		F48B505C0AA9369B002326C6 /* Mappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mappers.h; sourceTree = "<group>"; };
+		F48B505D0AA9369B002326C6 /* Mappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mappers.m; sourceTree = "<group>"; };
+		F491205A0A9782F4007F6F32 /* SFCubed.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SFCubed.m; sourceTree = "<group>"; };
+		F491205B0A9782F4007F6F32 /* SFCubed.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFCubed.h; sourceTree = "<group>"; };
+		F49120A20A978E1E007F6F32 /* ClientDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ClientDescription.plist; sourceTree = "<group>"; };
+		F49120D10A97931F007F6F32 /* SyncServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SyncServices.framework; path = /System/Library/Frameworks/SyncServices.framework; sourceTree = "<absolute>"; };
+		F49C44A80B12D91500A02F06 /* zkChildRelationship.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkChildRelationship.h; path = ../sforce/zkChildRelationship.h; sourceTree = SOURCE_ROOT; };
+		F49C44A90B12D91500A02F06 /* zkChildRelationship.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkChildRelationship.m; path = ../sforce/zkChildRelationship.m; sourceTree = SOURCE_ROOT; };
+		F49C44AA0B12D91500A02F06 /* zkDescribeField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkDescribeField.h; path = ../sforce/zkDescribeField.h; sourceTree = SOURCE_ROOT; };
+		F49C44AB0B12D91500A02F06 /* zkDescribeField.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkDescribeField.m; path = ../sforce/zkDescribeField.m; sourceTree = SOURCE_ROOT; };
+		F49C44AC0B12D91500A02F06 /* zkDescribeSObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkDescribeSObject.h; path = ../sforce/zkDescribeSObject.h; sourceTree = SOURCE_ROOT; };
+		F49C44AD0B12D91500A02F06 /* zkDescribeSObject.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkDescribeSObject.m; path = ../sforce/zkDescribeSObject.m; sourceTree = SOURCE_ROOT; };
+		F49C44AE0B12D91500A02F06 /* zkEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkEnvelope.h; path = ../sforce/zkEnvelope.h; sourceTree = SOURCE_ROOT; };
+		F49C44AF0B12D91500A02F06 /* zkEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkEnvelope.m; path = ../sforce/zkEnvelope.m; sourceTree = SOURCE_ROOT; };
+		F49C44B00B12D91500A02F06 /* zkQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkQueryResult.h; path = ../sforce/zkQueryResult.h; sourceTree = SOURCE_ROOT; };
+		F49C44B10B12D91500A02F06 /* zkQueryResult.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult.m; path = ../sforce/zkQueryResult.m; sourceTree = SOURCE_ROOT; };
+		F49C44B20B12D91500A02F06 /* zkSaveResult.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkSaveResult.h; path = ../sforce/zkSaveResult.h; sourceTree = SOURCE_ROOT; };
+		F49C44B30B12D91500A02F06 /* zkSaveResult.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkSaveResult.m; path = ../sforce/zkSaveResult.m; sourceTree = SOURCE_ROOT; };
+		F49C44B40B12D91500A02F06 /* zkSforceClient.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkSforceClient.h; path = ../sforce/zkSforceClient.h; sourceTree = SOURCE_ROOT; };
+		F49C44B50B12D91500A02F06 /* zkSforceClient.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkSforceClient.m; path = ../sforce/zkSforceClient.m; sourceTree = SOURCE_ROOT; };
+		F49C44B60B12D91500A02F06 /* zkSoapException.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkSoapException.h; path = ../sforce/zkSoapException.h; sourceTree = SOURCE_ROOT; };
+		F49C44B70B12D91500A02F06 /* zkSoapException.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkSoapException.m; path = ../sforce/zkSoapException.m; sourceTree = SOURCE_ROOT; };
+		F49C44B80B12D91500A02F06 /* zkSObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkSObject.h; path = ../sforce/zkSObject.h; sourceTree = SOURCE_ROOT; };
+		F49C44B90B12D91500A02F06 /* zkSObject.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkSObject.m; path = ../sforce/zkSObject.m; sourceTree = SOURCE_ROOT; };
+		F49C44BA0B12D91500A02F06 /* zkUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkUserInfo.h; path = ../sforce/zkUserInfo.h; sourceTree = SOURCE_ROOT; };
+		F49C44BB0B12D91500A02F06 /* zkUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkUserInfo.m; path = ../sforce/zkUserInfo.m; sourceTree = SOURCE_ROOT; };
+		F49C44BC0B12D91500A02F06 /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../sforce/zkXmlDeserializer.h; sourceTree = SOURCE_ROOT; };
+		F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../sforce/zkXmlDeserializer.m; sourceTree = SOURCE_ROOT; };
+		F49D28040AFD3BC300FF13EA /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		F4B79A3E0E0C7F2600DFD7E4 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteredTextFieldCell.h; sourceTree = "<group>"; };
+		F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteredTextFieldCell.m; sourceTree = "<group>"; };
+		F4CEA9B80A9EDA3900B04BD0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		F4DD01420AA69C5C0033BB4B /* TaskMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMapper.h; sourceTree = "<group>"; };
+		F4DD01430AA69C5C0033BB4B /* TaskMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMapper.m; sourceTree = "<group>"; };
+		F4E7C0580AE5E1960013BA0A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		F4F061B50D60197E003163D4 /* SyncOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncOptions.h; sourceTree = "<group>"; };
+		F4F061B60D60197E003163D4 /* SyncOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncOptions.m; sourceTree = "<group>"; };
+		F4F8664E0B6B09D3004CB54D /* AcceptChangeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptChangeInfo.h; sourceTree = "<group>"; };
+		F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptChangeInfo.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				F49120D20A97931F007F6F32 /* SyncServices.framework in Frameworks */,
+				F47152120A9AD1D0003EF07B /* Security.framework in Frameworks */,
+				F4E7C06C0AE5E1960013BA0A /* Sparkle.framework in Frameworks */,
+				F48406A00B58B85600F49EBE /* ExceptionHandling.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F491205B0A9782F4007F6F32 /* SFCubed.h */,
+				F491205A0A9782F4007F6F32 /* SFCubed.m */,
+				F46A32E90A9CB549002D6696 /* Constants.h */,
+				F46A32EA0A9CB549002D6696 /* Constants.m */,
+				F44604DB0AA3EE4C0036D487 /* SFPrefs.h */,
+				F44604DC0AA3EE4C0036D487 /* SFPrefs.m */,
+				F48183FA0E00DE86008A0797 /* ProtectController.h */,
+				F48183FB0E00DE86008A0797 /* ProtectController.m */,
+				F4B79A3E0E0C7F2600DFD7E4 /* CenteredTextFieldCell.h */,
+				F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F484069A0B58B85600F49EBE /* ExceptionHandling.framework */,
+				F4E7C0580AE5E1960013BA0A /* Sparkle.framework */,
+				F47152110A9AD1D0003EF07B /* Security.framework */,
+				F49120D10A97931F007F6F32 /* SyncServices.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* sfCubed.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* sfCubed */ = {
+			isa = PBXGroup;
+			children = (
+				F4CEA9B80A9EDA3900B04BD0 /* readme.txt */,
+				F465A55F0AAFD4CA004AC796 /* FieldMappers */,
+				F4139D4D0B3A36A90064489A /* Object Mappers */,
+				F44424A80D5FFF5B000B3C7D /* Sync Driver */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				F4139D4C0B3A36880064489A /* common */,
+				F4CEAA480A9FE81700B04BD0 /* Sforce Api */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = sfCubed;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* sfCubed_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F40B3A570C4B27B40014E88C /* Login.nib */,
+				F42A02AC0B58A9F600C8D9D5 /* minus-8.png */,
+				F42A02AD0B58A9F600C8D9D5 /* plus-8.png */,
+				F467A0EA0AFD83C200F0C9E8 /* sf3_64b.png */,
+				F467A0D50AFD757300F0C9E8 /* sf3_64.png */,
+				F40D1D150AA775E200F41D87 /* sf.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				F49120A20A978E1E007F6F32 /* ClientDescription.plist */,
+				F49D28040AFD3BC300FF13EA /* Credits.html */,
+				F48183620E00CF9F008A0797 /* protect.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4139D4C0B3A36880064489A /* common */ = {
+			isa = PBXGroup;
+			children = (
+				F40B3A680C4B28190014E88C /* credential.h */,
+				F40B3A690C4B28190014E88C /* credential.m */,
+				F4139D320B3A36840064489A /* CTGradient.h */,
+				F4139D330B3A36840064489A /* CTGradient.m */,
+				F4139D340B3A36840064489A /* RoundedBox.h */,
+				F4139D350B3A36840064489A /* RoundedBox.m */,
+				F40B3A5D0C4B27C70014E88C /* ZKLoginController.h */,
+				F40B3A5E0C4B27C70014E88C /* ZKLoginController.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		F4139D4D0B3A36A90064489A /* Object Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				F48B505C0AA9369B002326C6 /* Mappers.h */,
+				F48B505D0AA9369B002326C6 /* Mappers.m */,
+				F46A32D60A9CACF2002D6696 /* BaseMapper.h */,
+				F46A32D70A9CACF2002D6696 /* BaseMapper.m */,
+				F46A32D90A9CAD69002D6696 /* ContactMapper.h */,
+				F46A32DA0A9CAD69002D6696 /* ContactMapper.m */,
+				F44ADABA0C337BB20031F832 /* ActivityMapper.h */,
+				F44ADABB0C337BB20031F832 /* ActivityMapper.m */,
+				F4DD01420AA69C5C0033BB4B /* TaskMapper.h */,
+				F4DD01430AA69C5C0033BB4B /* TaskMapper.m */,
+				F4725B990AF860F700E2CE76 /* EventMapper.h */,
+				F4725B9A0AF860F700E2CE76 /* EventMapper.m */,
+				F4725C4F0AF8704300E2CE76 /* CalendarTracker.h */,
+				F4725C500AF8704300E2CE76 /* CalendarTracker.m */,
+			);
+			name = "Object Mappers";
+			sourceTree = "<group>";
+		};
+		F44424A80D5FFF5B000B3C7D /* Sync Driver */ = {
+			isa = PBXGroup;
+			children = (
+				F44424AD0D600003000B3C7D /* SyncRunner.h */,
+				F44424AE0D600003000B3C7D /* SyncRunner.m */,
+				F4415B120D5FD09600A69CCB /* deleteAccumulator.h */,
+				F4415B130D5FD09600A69CCB /* deleteAccumulator.m */,
+				F46A31E90A9C1EF4002D6696 /* AccItem.h */,
+				F46A31EA0A9C1EF4002D6696 /* AccItem.m */,
+				F4F8664E0B6B09D3004CB54D /* AcceptChangeInfo.h */,
+				F4F8664F0B6B09D3004CB54D /* AcceptChangeInfo.m */,
+				F40EE56B0BACB0B900796CF4 /* PulledItem.h */,
+				F40EE56C0BACB0B900796CF4 /* PulledItem.m */,
+				F41652E30C2DF198007B541E /* MyISyncChange.h */,
+				F41652E40C2DF198007B541E /* MyISyncChange.m */,
+				F422B2380AA0FB7200A7A7D5 /* LookupInfoCache.h */,
+				F422B2390AA0FB7200A7A7D5 /* LookupInfoCache.m */,
+				F422B3690AA173B800A7A7D5 /* SyncFilters.h */,
+				F422B36A0AA173B800A7A7D5 /* SyncFilters.m */,
+				F4F061B50D60197E003163D4 /* SyncOptions.h */,
+				F4F061B60D60197E003163D4 /* SyncOptions.m */,
+				F481835D0E00CF22008A0797 /* SalesforceObjectChangeSummary.h */,
+				F481835E0E00CF22008A0797 /* SalesforceObjectChangeSummary.m */,
+			);
+			name = "Sync Driver";
+			sourceTree = "<group>";
+		};
+		F465A55F0AAFD4CA004AC796 /* FieldMappers */ = {
+			isa = PBXGroup;
+			children = (
+				F465A5610AAFD4EA004AC796 /* FieldMappingInfo.h */,
+				F465A5620AAFD4EA004AC796 /* FieldMappingInfo.m */,
+				F46F3F490ABFB0AF00481FA1 /* TaskFieldMappingInfo.h */,
+				F46F3F4A0ABFB0AF00481FA1 /* TaskFieldMappingInfo.m */,
+				F4725BA40AF8647F00E2CE76 /* IdUrlFieldMappingInfo.h */,
+				F4725BA50AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m */,
+				F4725C1D0AF8696800E2CE76 /* EventFieldMappingInfo.h */,
+				F4725C1E0AF8696800E2CE76 /* EventFieldMappingInfo.m */,
+			);
+			name = FieldMappers;
+			sourceTree = "<group>";
+		};
+		F4CEAA480A9FE81700B04BD0 /* Sforce Api */ = {
+			isa = PBXGroup;
+			children = (
+				B4D1FB6B0C2079B50053F6A2 /* zkBaseClient.h */,
+				B4D1FB6C0C2079B50053F6A2 /* zkBaseClient.m */,
+				B4D1FB6D0C2079B50053F6A2 /* ZKPartnerEnvelope.h */,
+				B4D1FB6E0C2079B50053F6A2 /* ZKPartnerEnvelope.m */,
+				F458C04A0B6B015C00084F43 /* ZKPicklistEntry.h */,
+				F458C04B0B6B015C00084F43 /* ZKPicklistEntry.m */,
+				F458C04C0B6B015C00084F43 /* ZKRecordTypeInfo.h */,
+				F458C04D0B6B015C00084F43 /* ZKRecordTypeInfo.m */,
+				F49C44A80B12D91500A02F06 /* zkChildRelationship.h */,
+				F49C44A90B12D91500A02F06 /* zkChildRelationship.m */,
+				F49C44AA0B12D91500A02F06 /* zkDescribeField.h */,
+				F49C44AB0B12D91500A02F06 /* zkDescribeField.m */,
+				F49C44AC0B12D91500A02F06 /* zkDescribeSObject.h */,
+				F49C44AD0B12D91500A02F06 /* zkDescribeSObject.m */,
+				F49C44AE0B12D91500A02F06 /* zkEnvelope.h */,
+				F49C44AF0B12D91500A02F06 /* zkEnvelope.m */,
+				F49C44B00B12D91500A02F06 /* zkQueryResult.h */,
+				F49C44B10B12D91500A02F06 /* zkQueryResult.m */,
+				F49C44B20B12D91500A02F06 /* zkSaveResult.h */,
+				F49C44B30B12D91500A02F06 /* zkSaveResult.m */,
+				F49C44B40B12D91500A02F06 /* zkSforceClient.h */,
+				F49C44B50B12D91500A02F06 /* zkSforceClient.m */,
+				F49C44B60B12D91500A02F06 /* zkSoapException.h */,
+				F49C44B70B12D91500A02F06 /* zkSoapException.m */,
+				F49C44B80B12D91500A02F06 /* zkSObject.h */,
+				F49C44B90B12D91500A02F06 /* zkSObject.m */,
+				F49C44BA0B12D91500A02F06 /* zkUserInfo.h */,
+				F49C44BB0B12D91500A02F06 /* zkUserInfo.m */,
+				F49C44BC0B12D91500A02F06 /* zkXmlDeserializer.h */,
+				F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */,
+			);
+			name = "Sforce Api";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* sfCubed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sfCubed" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				F4E7BFFA0AE5DFE50013BA0A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sfCubed;
+			productInstallPath = "$(HOME)/Applications";
+			productName = sfCubed;
+			productReference = 8D1107320486CEB800E47090 /* sfCubed.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "sfCubed" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* sfCubed */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* sfCubed */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				F49120A30A978E1E007F6F32 /* ClientDescription.plist in Resources */,
+				F4CEA9B90A9EDA3900B04BD0 /* readme.txt in Resources */,
+				F40D1D160AA775E200F41D87 /* sf.icns in Resources */,
+				F49D28050AFD3BC300FF13EA /* Credits.html in Resources */,
+				F467A0D70AFD757300F0C9E8 /* sf3_64.png in Resources */,
+				F467A0EB0AFD83C200F0C9E8 /* sf3_64b.png in Resources */,
+				F42A02AE0B58A9F600C8D9D5 /* minus-8.png in Resources */,
+				F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */,
+				F40B3A5C0C4B27B40014E88C /* Login.nib in Resources */,
+				F48183630E00CF9F008A0797 /* protect.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				F491205C0A9782F4007F6F32 /* SFCubed.m in Sources */,
+				F46A31EB0A9C1EF4002D6696 /* AccItem.m in Sources */,
+				F46A32D80A9CACF2002D6696 /* BaseMapper.m in Sources */,
+				F46A32DB0A9CAD69002D6696 /* ContactMapper.m in Sources */,
+				F46A32EB0A9CB549002D6696 /* Constants.m in Sources */,
+				F422B23A0AA0FB7200A7A7D5 /* LookupInfoCache.m in Sources */,
+				F422B36B0AA173B800A7A7D5 /* SyncFilters.m in Sources */,
+				F44604DD0AA3EE4C0036D487 /* SFPrefs.m in Sources */,
+				F4DD01440AA69C5C0033BB4B /* TaskMapper.m in Sources */,
+				F48B505E0AA9369C002326C6 /* Mappers.m in Sources */,
+				F465A5630AAFD4EA004AC796 /* FieldMappingInfo.m in Sources */,
+				F46F3F4B0ABFB0AF00481FA1 /* TaskFieldMappingInfo.m in Sources */,
+				F4725B9C0AF860F700E2CE76 /* EventMapper.m in Sources */,
+				F4725BA70AF8647F00E2CE76 /* IdUrlFieldMappingInfo.m in Sources */,
+				F4725C200AF8696800E2CE76 /* EventFieldMappingInfo.m in Sources */,
+				F4725C520AF8704300E2CE76 /* CalendarTracker.m in Sources */,
+				F49C44BF0B12D91500A02F06 /* zkChildRelationship.m in Sources */,
+				F49C44C10B12D91500A02F06 /* zkDescribeField.m in Sources */,
+				F49C44C30B12D91500A02F06 /* zkDescribeSObject.m in Sources */,
+				F49C44C50B12D91500A02F06 /* zkEnvelope.m in Sources */,
+				F49C44C70B12D91500A02F06 /* zkQueryResult.m in Sources */,
+				F49C44C90B12D91500A02F06 /* zkSaveResult.m in Sources */,
+				F49C44CB0B12D91500A02F06 /* zkSforceClient.m in Sources */,
+				F49C44CD0B12D91500A02F06 /* zkSoapException.m in Sources */,
+				F49C44CF0B12D91500A02F06 /* zkSObject.m in Sources */,
+				F49C44D10B12D91500A02F06 /* zkUserInfo.m in Sources */,
+				F49C44D30B12D91500A02F06 /* zkXmlDeserializer.m in Sources */,
+				F4139D390B3A36840064489A /* CTGradient.m in Sources */,
+				F4139D3B0B3A36840064489A /* RoundedBox.m in Sources */,
+				F458C04F0B6B015C00084F43 /* ZKPicklistEntry.m in Sources */,
+				F458C0510B6B015C00084F43 /* ZKRecordTypeInfo.m in Sources */,
+				F4F866510B6B09D3004CB54D /* AcceptChangeInfo.m in Sources */,
+				F40EE56E0BACB0B900796CF4 /* PulledItem.m in Sources */,
+				B4D1FB700C2079B50053F6A2 /* zkBaseClient.m in Sources */,
+				B4D1FB720C2079B50053F6A2 /* ZKPartnerEnvelope.m in Sources */,
+				F41652E60C2DF198007B541E /* MyISyncChange.m in Sources */,
+				F44ADABD0C337BB20031F832 /* ActivityMapper.m in Sources */,
+				F40B3A600C4B27C70014E88C /* ZKLoginController.m in Sources */,
+				F40B3A6B0C4B28190014E88C /* credential.m in Sources */,
+				F4415B140D5FD09600A69CCB /* deleteAccumulator.m in Sources */,
+				F44424AF0D600003000B3C7D /* SyncRunner.m in Sources */,
+				F4F061B70D60197E003163D4 /* SyncOptions.m in Sources */,
+				F481835F0E00CF22008A0797 /* SalesforceObjectChangeSummary.m in Sources */,
+				F48183FC0E00DE86008A0797 /* ProtectController.m in Sources */,
+				F4B79A400E0C7F2600DFD7E4 /* CenteredTextFieldCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/English-Only Framework\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = sfCubed;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/English-Only Framework\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = sfCubed;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sfCubed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "sfCubed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
