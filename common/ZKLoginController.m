@@ -28,10 +28,13 @@
 
 static NSString * login_lastUsernameKey = @"login_lastUserName";
 
-+ (void)initialize {
-	[self setKeys:[NSArray arrayWithObject:@"server"]   triggerChangeNotificationsForDependentKey:@"credentials"];
-	[self setKeys:[NSArray arrayWithObject:@"server"]   triggerChangeNotificationsForDependentKey:@"canDeleteServer"];
-	[self setKeys:[NSArray arrayWithObject:@"username"] triggerChangeNotificationsForDependentKey:@"password"];
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if ([key isEqualToString:@"credentials"] || [key isEqualToString:@"canDeleteServer"])
+        keyPaths = [keyPaths setByAddingObject:@"server"];
+	else if ([key isEqualToString:@"password"])
+		keyPaths = [keyPaths setByAddingObject:@"username"];
+    return keyPaths;
 }
 
 - (id)init {
