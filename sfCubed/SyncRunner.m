@@ -53,6 +53,7 @@
 
 @implementation SyncRunner
 
+// Gets an ISyncClient instance from sync-services, registers our sync serices client & schema if needed.
 +(ISyncClient *)syncClient {
 	ISyncManager *manager = [ISyncManager sharedManager];
 	ISyncClient *syncClient;
@@ -211,13 +212,16 @@
 	[mappers pushFinished:[[sforce currentUserInfo] userId]];
 	
 	BOOL finish = YES;
-	if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate distantFuture]]) {
-		finish = [self pullChanges];
-		if (finish)
-			[session clientCommittedAcceptedChanges];
-		else {
-			[self setStatus:@"Synchronization cancelled"];
-			[self setStatus2:@""];
+	// if the user wants a one-way sync, skip pulling any changes.
+	if (![options oneWaySync]) {
+		if ([session prepareToPullChangesForEntityNames:entityNames beforeDate:[NSDate distantFuture]]) {
+			finish = [self pullChanges];
+			if (finish)
+				[session clientCommittedAcceptedChanges];
+			else {
+				[self setStatus:@"Synchronization cancelled"];
+				[self setStatus2:@""];
+			}
 		}
 	}
 	// all done

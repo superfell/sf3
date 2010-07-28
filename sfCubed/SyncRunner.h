@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2006-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,6 +26,10 @@
 @class ISyncSession;
 @class Mappers;
 @class SyncOptions;
+
+// SyncRunner is the main driving class for performing a single sync session
+// it handles interacting with Sync Services, and handing things off to the
+// mappers, setting up the options based on the set preferences and so on.
 
 @interface SyncRunner : NSObject {
 	ZKSforceClient		*sforce;

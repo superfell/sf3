@@ -1,4 +1,4 @@
-// Copyright (c) 2008 Simon Fell
+// Copyright (c) 2008-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,6 +21,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+// This is used to create a snap-shot of the current users preferences
+// at the start of the sync, so that during the sync run we consistently
+// see what's configured, even if the user trys and changes it while there's
+// a sync in progress.
 
 @interface SyncOptions : NSObject {
 	BOOL	syncContacts;
@@ -31,16 +35,23 @@
 	BOOL	limitTaskSyncToOwner;
 	int		protectSfdcLimit;
 	BOOL	autoJoinSync;
+	BOOL	oneWaySync;
 }
 
 -(id)initFromUserDefaults;
 
--(BOOL)syncContacts;
--(BOOL)limitContactSyncToOwner;
--(BOOL)syncEvents;
--(BOOL)limitEventSyncToOwner;
--(BOOL)syncTasks;
--(BOOL)limitTaskSyncToOwner;
+@property (readonly) BOOL syncContacts;
+@property (readonly) BOOL limitContactSyncToOwner;
+
+@property (readonly) BOOL syncEvents;
+@property (readonly) BOOL limitEventSyncToOwner;
+
+@property (readonly) BOOL syncTasks;
+@property (readonly) BOOL limitTaskSyncToOwner;
+
+@property (readonly) BOOL autoJoinSync;
+@property (readonly) BOOL oneWaySync;
+
 -(BOOL)shouldShowUserWarningOnSfdcChanges:(int)totalChanges;
--(BOOL)autoJoinSync;
+
 @end

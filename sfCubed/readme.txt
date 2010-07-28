@@ -33,10 +33,9 @@ handle fields hidden by FLS
 custom field mappings (would be useful for home email)
 support being able to pick which calendar in iCal to sync to (this would then enable entourage <-> ical <-> sfdc)
 for contacts support an AddressBook subset using a Salesforce.com group
-improve logging & diagnostics, fix the stupid logging draw.
+improve logging & diagnostics, fix the stupid logging drawer.
 UI clean-up
 move sync process off the main thread
-add a UI/Prompt similar to the protect the truth prompt for protecting SFDC.
 prompt/do an AdressBook & iCal backup on first run
 write some help
 investigate "conflicts" on dates that are the same date (probably some TZ weirdness)

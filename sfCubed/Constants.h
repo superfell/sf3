@@ -53,3 +53,5 @@ extern NSString *PREF_CALENDAR_SUFFIX;
 
 extern NSString *PREF_ENABLE_PROTECT_SFDC;
 extern NSString *PREF_PROTECT_SFDC_LIMIT;
+
+extern NSString *PREF_ONE_WAY_SYNC;

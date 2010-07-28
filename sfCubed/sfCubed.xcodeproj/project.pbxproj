@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -166,7 +166,7 @@
 		F48B505D0AA9369B002326C6 /* Mappers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mappers.m; sourceTree = "<group>"; };
 		F491205A0A9782F4007F6F32 /* SFCubed.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SFCubed.m; sourceTree = "<group>"; };
 		F491205B0A9782F4007F6F32 /* SFCubed.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFCubed.h; sourceTree = "<group>"; };
-		F49120A20A978E1E007F6F32 /* ClientDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ClientDescription.plist; sourceTree = "<group>"; };
+		F49120A20A978E1E007F6F32 /* ClientDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClientDescription.plist; sourceTree = "<group>"; };
 		F49120D10A97931F007F6F32 /* SyncServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SyncServices.framework; path = /System/Library/Frameworks/SyncServices.framework; sourceTree = "<absolute>"; };
 		F49C44A80B12D91500A02F06 /* zkChildRelationship.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkChildRelationship.h; path = ../sforce/zkChildRelationship.h; sourceTree = SOURCE_ROOT; };
 		F49C44A90B12D91500A02F06 /* zkChildRelationship.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkChildRelationship.m; path = ../sforce/zkChildRelationship.m; sourceTree = SOURCE_ROOT; };
@@ -464,7 +464,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "sfCubed" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* sfCubed */;
 			projectDirPath = "";
@@ -626,24 +626,31 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};

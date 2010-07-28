@@ -1,4 +1,4 @@
-// Copyright (c) 2008 Simon Fell
+// Copyright (c) 2008-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,6 +25,8 @@
 
 @implementation SyncOptions
 
+@synthesize syncContacts, limitContactSyncToOwner, syncEvents, limitEventSyncToOwner, syncTasks, limitTaskSyncToOwner, autoJoinSync, oneWaySync;
+
 -(id)initFromUserDefaults {
 	self = [super init];
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -36,39 +38,12 @@
 	limitTaskSyncToOwner	= [ud boolForKey:PREF_MY_TASKS];
 	protectSfdcLimit		= [ud boolForKey:PREF_ENABLE_PROTECT_SFDC] ? [ud integerForKey:PREF_PROTECT_SFDC_LIMIT] : -1;
 	autoJoinSync			= [ud boolForKey:PREF_AUTO_JOIN_SYNC];
+	oneWaySync				= [ud boolForKey:PREF_ONE_WAY_SYNC];
 	return self;
-}
-
--(BOOL)syncContacts {
-	return syncContacts;
-}
-
--(BOOL)limitContactSyncToOwner {
-	return limitContactSyncToOwner;
-}
-
--(BOOL)syncEvents {
-	return syncEvents;
-}
-
--(BOOL)limitEventSyncToOwner {
-	return limitEventSyncToOwner;
-}
-
--(BOOL)syncTasks {
-	return syncTasks;
-}
-
--(BOOL)limitTaskSyncToOwner {
-	return limitTaskSyncToOwner;
 }
 
 -(BOOL)shouldShowUserWarningOnSfdcChanges:(int)totalChanges {
 	return (protectSfdcLimit >= 0) && (totalChanges > protectSfdcLimit);
-}
-
--(BOOL)autoJoinSync {
-	return autoJoinSync;
 }
 
 @end
