@@ -23,13 +23,12 @@
 
 @implementation LookupInfoCache
 
-+ (LookupInfoCache *) cacheForSObject:(NSString *)soType fields:(NSString *)fields sforce:(ZKSforceClient *)sf {
-	LookupInfoCache * c = [[LookupInfoCache alloc] init];
-	[c initForSObject:soType fields:fields sforce:sf];
-	return [c autorelease];
++(LookupInfoCache *)cacheForSObject:(NSString *)soType fields:(NSString *)fields sforce:(ZKSforceClient *)sf {
+	return [[[LookupInfoCache alloc] initForSObject:soType fields:fields sforce:sf] autorelease];
 }
 
-- (id) initForSObject:(NSString *)soType fields:(NSString *)fields sforce:(ZKSforceClient *)sf {
+-(id)initForSObject:(NSString *)soType fields:(NSString *)fields sforce:(ZKSforceClient *)sf {
+	self = [super init];
 	sobjectType = [soType retain];
 	fieldList = [fields retain];
 	fetchedObjects = [[NSMutableDictionary alloc] init];
