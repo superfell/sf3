@@ -161,25 +161,40 @@
 	[[self deleteAccumulator] enqueueDelete:recordId];
 }
 
+// replaces all characters that are not valid in xml and replaces them with a space.
+-(NSString *)cleanStringValue:(NSString *)s {
+	if (s == nil) return nil;
+	NSMutableString *c = [NSMutableString stringWithString:s];
+	for (int i = 0; i < [c length]; i++) {
+		unichar x = [c characterAtIndex:i];
+		if (x < 32 && (x != 9) && (x != 0x0A) && (x != 0x0D))
+			[c replaceCharactersInRange:NSMakeRange(i,1) withString:@" "];
+	}
+	return c;
+}
+
 // returns a new SObject that's a clone of the src SObject with all the read-only fields removed.
+// cleans up any string values by removing any characers not valid for xml.
 - (ZKSObject *)cleanSObjectForWriting:(ZKSObject *)src forUpdate:(BOOL)forUpdate {
 	ZKSObject *r;
-	if (forUpdate)
+	if (forUpdate) {
 		r = [ZKSObject withTypeAndId:[src type] sfId:[src id]];
-	else
+	} else {
 		r = [ZKSObject withType:[src type]];
+	}
 	
-	ZKDescribeField *f;
-	NSEnumerator *e = [[describe fields] objectEnumerator];
-	while (f = [e nextObject]) {
+	// loop through all the fields and just copy over those are not readonly to the new object.
+	for (ZKDescribeField *f in [describe fields]) {
 		BOOL ok = forUpdate ? [f updateable] : [f createable];
-		if (ok) {
-			id fieldValue = [src fieldValue:[f name]];
-			if (fieldValue != nil) {
-				[r setFieldValue:fieldValue field:[f name]];
-			} else {
-				if ([src isFieldToNull:[f name]]) 
-					[r setFieldToNull:[f name]];
+		if (!ok) continue;
+		id fieldValue = [src fieldValue:[f name]];
+		if (fieldValue != nil) {
+			if ([fieldValue isKindOfClass:[NSString class]])
+				fieldValue = [self cleanStringValue:fieldValue];
+			[r setFieldValue:fieldValue field:[f name]];
+		} else {
+			if ([src isFieldToNull:[f name]]) {
+				[r setFieldToNull:[f name]];
 			}
 		}
 	}
