@@ -37,6 +37,14 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
 }
 
+- (NSArray *)supportedEntityNames {
+	return [NSArray array];
+}
+
+- (BOOL)shouldApplyRecord:(NSDictionary *)record withRecordIdentifier:(NSString *)recordIdentifier {
+	return YES;
+}
+
 @end
  
 // for emails, we only care about work type emails.

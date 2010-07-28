@@ -22,32 +22,32 @@
 #import <Cocoa/Cocoa.h>
 #import <SyncServices/SyncServices.h>
 
-@interface BaseSyncFilter : NSObject <NSCoding> {
+@interface BaseSyncFilter : NSObject <NSCoding, ISyncFiltering> {
 }
 @end
 
-@interface EmailSyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface EmailSyncFilter : BaseSyncFilter {
 }
 @end
 
-@interface PhoneSyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface PhoneSyncFilter : BaseSyncFilter {
 	NSArray * phoneTypes;
 }
 @end
 
-@interface AddressSyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface AddressSyncFilter : BaseSyncFilter {
 }
 @end
 
-@interface CompanySyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface CompanySyncFilter : BaseSyncFilter {
 }
 @end
 
-@interface CalendarSyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface CalendarSyncFilter : BaseSyncFilter {
 }
 @end
 
-@interface CalendarChildSyncFilter : BaseSyncFilter <ISyncFiltering> {
+@interface CalendarChildSyncFilter : BaseSyncFilter {
 	NSString *calendarId;
 	NSString *entity;
 }
