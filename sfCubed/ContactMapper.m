@@ -152,7 +152,7 @@
 {
 	// start with the easy base fields stuff
 	NSMutableDictionary * c = [self mapFromSObject:src toAppleEntityName:Entity_Contact];
-
+	[c setObject:@"person" forKey:@"display as company"];
 	// account.name -> company 
 	if ([[src fieldValue:@"AccountId"] length] > 0) {
 		ZKSObject *account = [src fieldValue:@"Account"];
@@ -357,10 +357,9 @@
 	// for phone & address, change updates to be a pair of delete/create changes instead.
 	// this allows all the deletes to be applied before any of the change's, so type swaps
 	// will work correctly (e.g. home phone <-> work phone changes.)
-	ISyncChange *c;
 	int idx = 0;
-	NSEnumerator *e = [childChanges objectEnumerator];
-	while (c = [e nextObject]) {
+	NSArray *changes = [NSArray arrayWithArray:childChanges];
+	for (ISyncChange *c in changes) {
 		if ([c type] == ISyncChangeTypeModify) {
 			NSString * appleType = [[c record] objectForKey:key_RecordEntityName];
 			if ([appleType isEqualToString:Entity_Phone] || [appleType isEqualToString:Entity_Address]) {
@@ -374,12 +373,6 @@
 		}
 		idx++;
 	}
-//	e = [childChanges objectEnumerator];
-//	NSLog(@"Finalized list of child changes");
-//	while (c = [e nextObject]) {
-//		NSLog(@"%@", c);
-//	}
-//	NSLog(@"Finalized list of child changes - end");
 }
 
 // update a relationship (on the sync side) regular field update(s) on the sfdc side
