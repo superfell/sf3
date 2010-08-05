@@ -28,6 +28,12 @@
 #import "PulledItem.h"
 #import "SalesforceObjectChangeSummary.h"
 
+@interface BaseMapper ()
+- (void)finishChangeType:(ISyncChangeType)changeType;
+- (ZKSObject *)cleanSObjectForWriting:(ZKSObject *)src forUpdate:(BOOL)forUpdate;
+
+@end
+
 @implementation BaseMapper
 
 -(id)initWithClient:(ZKSforceClient *)client andOptions:(SyncOptions *)syncOptions {
@@ -207,33 +213,29 @@
 
 - (void)updateChangeSummary:(SalesforceChangeSummary *)summary {
 	SalesforceObjectChangeSummary *s = [summary changesForEntity:[self primarySalesforceObjectDisplayName]];
-	[s incrementDeletes:[accumulator count]];
-	int add=0, update=0;
-	NSEnumerator *e = [pulledEntities objectEnumerator];
-	PulledItem *p;
-	while (p = [e nextObject]) {
+	for (NSString *sfId in [accumulator toDelete])
+		[s willDelete:sfId];
+	
+	for (PulledItem *p in [pulledEntities allValues]) {
 		if ([p changeType] == ISyncChangeTypeAdd)
-			add++;
+			[s willCreate:[self cleanSObjectForWriting:[p sobject] forUpdate:YES]];
 		else if ([p changeType] == ISyncChangeTypeModify)
-			update++;
+			[s willUpdate:[self cleanSObjectForWriting:[p sobject] forUpdate:NO]];
 	}
-	[s incrementAdds:add];
-	[s incrementUpdates:update];
 }
 
--(void)finishChangeType:(ISyncChangeType)changeType
-{
+-(void)finishChangeType:(ISyncChangeType)changeType {
 	// save all changes to sfdc
-	NSMutableArray * sobjects = [NSMutableArray array];
-	NSMutableArray * pitems   = [NSMutableArray array];
-	PulledItem * pi;
-	NSEnumerator * e = [pulledEntities objectEnumerator];
-	while (pi = [e nextObject]) {
+	NSMutableArray * sobjects = [NSMutableArray arrayWithCapacity:[pulledEntities count]];
+	NSMutableArray * pitems   = [NSMutableArray arrayWithCapacity:[pulledEntities count]];
+
+	for (PulledItem *pi in [pulledEntities allValues]) {
 		if ([pi changeType] == changeType) {
 			[sobjects addObject:[self cleanSObjectForWriting:[pi sobject] forUpdate:changeType == ISyncChangeTypeModify]];
 			[pitems addObject:pi];
 		} 
 	}
+
 	NSArray * results;
 	if (changeType == ISyncChangeTypeModify)
 		results = [sforce update:sobjects];
@@ -243,6 +245,7 @@
 	UInt32 idx;
 	ZKSObject *sobject;
 	ZKSaveResult *sr;
+	PulledItem *pi;
 	for (idx = 0; idx < [results count]; idx++) {
 		pi = [pitems objectAtIndex:idx];
 		sobject = [sobjects objectAtIndex:idx];

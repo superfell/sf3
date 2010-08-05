@@ -27,6 +27,7 @@
 	SalesforceChangeSummary *summary;
 	IBOutlet NSWindow		*window;
 	IBOutlet NSTableView	*table;
+	IBOutlet NSTableView	*summaryListTable;
 }
 
 -(id)initWithChanges:(SalesforceChangeSummary *)s;

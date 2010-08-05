@@ -21,6 +21,29 @@
 
 #import "ProtectController.h"
 #import "SalesforceObjectChangeSummary.h"
+#import "zkSObject.h"
+
+@interface SummaryList : NSObject <NSTableViewDataSource> {
+	NSArray *sobjects;
+}
+@property (retain) NSArray *sobjects;
+@end
+
+@implementation SummaryList 
+
+@synthesize sobjects;
+
+-(int)numberOfRowsInTableView:(NSTableView *)aTableView {
+	return [sobjects count];
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+	ZKSObject *o = [sobjects objectAtIndex:rowIndex];
+	if ([[o type] isEqualToString:@"Contact"])
+		return [NSString stringWithFormat:@"%@ %@", [o fieldValue:@"FirstName"], [o fieldValue:@"LastName"]];
+	return [o fieldValue:@"Subject"];
+}
+@end
 
 @implementation ProtectController
 
@@ -38,10 +61,15 @@
 // returns true if the user selected to continue with the sync
 -(BOOL)shouldContinueSync {
 	[NSBundle loadNibNamed:@"protect.nib" owner:self];
-	[table setDelegate:self];
+//	[table setDelegate:self];
 	[summary removeEntitiesWithNoChanges];
 	[table setDataSource:summary];
 	[table reloadData];
+	
+	SummaryList *sl = [[SummaryList alloc] init];
+	[sl setSobjects:[[[summary changes] objectAtIndex:0] updateDetails]];
+	[summaryListTable setDataSource:sl];
+	//[sl release];
 	
 	BOOL cont = [NSApp runModalForWindow:window] == NSRunStoppedResponse;
 	[window orderOut:self];

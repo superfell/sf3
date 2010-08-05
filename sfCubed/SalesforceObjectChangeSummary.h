@@ -1,4 +1,4 @@
-// Copyright (c) 2008 Simon Fell
+// Copyright (c) 2008-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,29 +21,35 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ZKSObject;
+
 // tracks data about changes we're planning to make to salesforce.com
 @interface SalesforceObjectChangeSummary : NSObject {
-	NSString	*entityName;
-	int			adds;
-	int			updates;
-	int			deletes;
+	NSString		*entityName;
+	NSMutableArray	*creates;
+	NSMutableArray	*updates;
+	NSMutableArray	*deletes;
 }
 
--(void)incrementAdds:(int)num;
--(void)incrementUpdates:(int)num;
--(void)incrementDeletes:(int)num;
+-(void)willCreate:(ZKSObject *)o;
+-(void)willUpdate:(ZKSObject *)o;
+-(void)willDelete:(NSString *)sfId;
 
 -(NSNumber *)adds;
 -(NSNumber *)deletes;
 -(NSNumber *)updates;
--(int)totalChanges;
 
+-(NSArray *)createDetails;
+-(NSArray *)updateDetails;
+-(NSArray *)deleteDetails;
+
+-(int)totalChanges;
 -(NSString *)entityName;
 
 @end
 
 // summary data about the set of entities we're planning to change in salesforce.com
-@interface SalesforceChangeSummary : NSObject {
+@interface SalesforceChangeSummary : NSObject <NSTableViewDataSource> {
 	NSMutableDictionary *changes;
 	NSArray				*keyIndex;
 }
@@ -52,4 +58,6 @@
 
 -(int)totalChanges;
 -(void)removeEntitiesWithNoChanges;
+-(NSArray *)changes;
+-(void)dump;
 @end

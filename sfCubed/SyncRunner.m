@@ -163,6 +163,7 @@
 	if ([mappers count] == 0) {
 		[self setStatus:@"Nothing configured to sync!"];
 		[mappers release];
+		mappers = nil;
 		return NO;
 	}
 	
@@ -297,6 +298,7 @@
 		[mapper updateChangeSummary:changeSummary];
 	}
 
+	[changeSummary dump];
 	if ([options shouldShowUserWarningOnSfdcChanges:[changeSummary totalChanges]]) {
 		ProtectController *pc = [[[ProtectController alloc] initWithChanges:changeSummary] autorelease];
 		if (![pc shouldContinueSync]) {

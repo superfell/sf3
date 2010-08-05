@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2006-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -44,6 +44,10 @@ static const int MAX_IN_ONE_BATCH = 50;
 
 - (void)enqueueDelete:(NSString *)sfId {
 	[deletes addObject:sfId];
+}
+
+- (NSArray *)toDelete {
+	return deletes;
 }
 
 - (int)count {

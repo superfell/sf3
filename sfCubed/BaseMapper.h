@@ -83,6 +83,8 @@ typedef enum SyncMapperPhase {
 																			// can support on the sfdc side.
 - (void)updateChangeSummary:(SalesforceChangeSummary *)summary;				// update the summary object with the stats about what changes we plan to
 																			// make in salesforce.com
+- (void)finish;																// last call during pull, actually send the data to salesforce.com
+
 // base class pre-canned implementation
 // push impl
 - (void)pushChangesForSObjects:(NSArray *)src;
@@ -90,9 +92,7 @@ typedef enum SyncMapperPhase {
 // pull impl
 - (BOOL)isChildEntity:(NSString *)appleId;
 - (void)topLevelEntityUpdate:(ISyncChange *)change;
-- (void)finish;
-- (void)finishChangeType:(ISyncChangeType)changeType;
-- (ZKSObject *)cleanSObjectForWriting:(ZKSObject *)src forUpdate:(BOOL)forUpdate;
+
 - (NSDictionary *)makeSyncFormattedRecord:(ZKSObject *)src sfId:(NSString *)sfId type:(ISyncChangeType)type;
 
 // conversion helpers

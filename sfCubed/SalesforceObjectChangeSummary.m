@@ -26,48 +26,68 @@
 
 -(id)initForEntity:(NSString *)entity {
 	self = [super init];
-	adds = 0;
-	deletes = 0;
-	updates = 0;
+	creates = [[NSMutableArray alloc] init];
+	deletes = [[NSMutableArray alloc] init];
+	updates = [[NSMutableArray alloc] init];
 	entityName = [entity retain];
 	return self;
 }
 
 -(void)dealloc {
 	[entityName release];
+	[creates release];
+	[deletes release];
+	[updates release];
 	[super dealloc];
 }
 
--(void)incrementAdds:(int)num {
-	adds += num;
+-(void)willCreate:(ZKSObject *)o {
+	[creates addObject:o];
 }
 
--(void)incrementUpdates:(int)num {
-	updates += num;
+-(void)willUpdate:(ZKSObject *)o {
+	[updates addObject:o];
 }
 
--(void)incrementDeletes:(int)num {
-	deletes += num;
+-(void)willDelete:(NSString *)sfId {
+	[deletes addObject:sfId];
+}
+
+-(NSArray *)createDetails {
+	return creates;
+}
+
+-(NSArray *)updateDetails {
+	return updates;
+}
+
+-(NSArray *)deleteDetails {
+	return deletes;
 }
 
 -(NSNumber *)adds {
-	return [NSNumber numberWithInt:adds];
+	return [NSNumber numberWithInt:[creates count]];
 }
 
 -(NSNumber *)deletes {
-	return [NSNumber numberWithInt:deletes];
+	return [NSNumber numberWithInt:[deletes count]];
 }
 
 -(NSNumber *)updates {
-	return [NSNumber numberWithInt:updates];
+	return [NSNumber numberWithInt:[updates count]];
 }
 
 -(int)totalChanges {
-	return adds + updates + deletes;
+	return [creates count] + [updates count] + [deletes count];
 }
 
 -(NSString *)entityName {
 	return entityName;
+}
+
+-(void)dump {
+	NSLog(@"%@\r\n", entityName);
+	NSLog(@"creates\r\n%@\r\nupdates\r\n%@\r\ndeletes\r\n%@", creates, updates, deletes);
 }
 
 @end
@@ -86,6 +106,12 @@
 	[super dealloc];
 }
 
+-(void)dump {
+	NSLog(@"Change Summary\r\n=============");
+	for (SalesforceObjectChangeSummary *s in [changes allValues])
+		[s dump];
+}
+
 -(SalesforceObjectChangeSummary *)changesForEntity:(NSString *)entityName {
 	NSString *key = [entityName lowercaseString];
 	SalesforceObjectChangeSummary *s = [changes objectForKey:key];
@@ -97,25 +123,25 @@
 }
 
 -(void)removeEntitiesWithNoChanges {
-	NSString *k;
-	NSEnumerator *e = [[changes allKeys] objectEnumerator];
-	while (k = [e nextObject]) {
+	for (NSString *k in [changes allKeys]) {
 		if ([[changes objectForKey:k] totalChanges] == 0) 
 			[changes removeObjectForKey:k];
 	}
 }
 
 -(int)totalChanges {
-	NSEnumerator *e = [changes objectEnumerator];
 	int t = 0;
-	SalesforceObjectChangeSummary *s;
-	while (s = [e nextObject])
+	for (SalesforceObjectChangeSummary *s in [changes allValues]) 
 		t += [s totalChanges];
 	return t;
 }
 
 -(int)numberOfRowsInTableView:(NSTableView *)aTableView {
 	return [changes count];
+}
+
+-(NSArray *)changes {
+	return [changes allValues];
 }
 
 -(NSArray *)keyIndex {
