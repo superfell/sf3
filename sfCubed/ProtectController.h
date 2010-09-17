@@ -23,11 +23,14 @@
 
 @class SalesforceChangeSummary;
 
-@interface ProtectController : NSObject {
+@interface ProtectController : NSObject <NSTableViewDelegate> {
 	SalesforceChangeSummary *summary;
 	IBOutlet NSWindow		*window;
-	IBOutlet NSTableView	*table;
-	IBOutlet NSTableView	*summaryListTable;
+	IBOutlet NSTableView	*summaryTable;
+	IBOutlet NSTableView	*changesListTable;
+	IBOutlet NSTableView	*detailTable;
+	
+	BOOL					showingDetails;
 }
 
 -(id)initWithChanges:(SalesforceChangeSummary *)s;
@@ -37,4 +40,8 @@
 
 -(IBAction)cancelSync:(id)sender;
 -(IBAction)continueSync:(id)sender;
+
+-(IBAction)showHideDetails:(id)sender;
+
+-(NSString *)showHideButtonText;
 @end
