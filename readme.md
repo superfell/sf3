@@ -49,3 +49,5 @@ There is much to do
 - re-occuring events (ugh)
 - one of the reason we pull all the changes before working on any is to support the progress bar, perhaps we should give up on the progress bar, and just use an indterminate progress spinner instead.
 - show details of changes proposed to be sent to salesforce.com in the protect sfdc dialog.
+- switch to OAuth for the login process
+- write some unit tests, and look at automated end to end testing
