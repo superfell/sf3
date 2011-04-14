@@ -52,6 +52,7 @@
 		F491205C0A9782F4007F6F32 /* SFCubed.m in Sources */ = {isa = PBXBuildFile; fileRef = F491205A0A9782F4007F6F32 /* SFCubed.m */; };
 		F49120A30A978E1E007F6F32 /* ClientDescription.plist in Resources */ = {isa = PBXBuildFile; fileRef = F49120A20A978E1E007F6F32 /* ClientDescription.plist */; };
 		F49120D20A97931F007F6F32 /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49120D10A97931F007F6F32 /* SyncServices.framework */; };
+		F49280391356AD3B001D289F /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F49280381356AD3B001D289F /* readme.md */; };
 		F49C44BF0B12D91500A02F06 /* zkChildRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44A90B12D91500A02F06 /* zkChildRelationship.m */; };
 		F49C44C10B12D91500A02F06 /* zkDescribeField.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44AB0B12D91500A02F06 /* zkDescribeField.m */; };
 		F49C44C30B12D91500A02F06 /* zkDescribeSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44AD0B12D91500A02F06 /* zkDescribeSObject.m */; };
@@ -65,7 +66,6 @@
 		F49C44D30B12D91500A02F06 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C44BD0B12D91500A02F06 /* zkXmlDeserializer.m */; };
 		F49D28050AFD3BC300FF13EA /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F49D28040AFD3BC300FF13EA /* Credits.html */; };
 		F4B79A400E0C7F2600DFD7E4 /* CenteredTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */; };
-		F4CEA9B90A9EDA3900B04BD0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4CEA9B80A9EDA3900B04BD0 /* readme.txt */; };
 		F4DD01440AA69C5C0033BB4B /* TaskMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DD01430AA69C5C0033BB4B /* TaskMapper.m */; };
 		F4E7C06C0AE5E1960013BA0A /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
 		F4E7C06F0AE5E19B0013BA0A /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4E7C0580AE5E1960013BA0A /* Sparkle.framework */; };
@@ -168,6 +168,7 @@
 		F491205B0A9782F4007F6F32 /* SFCubed.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SFCubed.h; sourceTree = "<group>"; };
 		F49120A20A978E1E007F6F32 /* ClientDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClientDescription.plist; sourceTree = "<group>"; };
 		F49120D10A97931F007F6F32 /* SyncServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SyncServices.framework; path = /System/Library/Frameworks/SyncServices.framework; sourceTree = "<absolute>"; };
+		F49280381356AD3B001D289F /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = readme.md; path = ../readme.md; sourceTree = SOURCE_ROOT; };
 		F49C44A80B12D91500A02F06 /* zkChildRelationship.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkChildRelationship.h; path = ../sforce/zkChildRelationship.h; sourceTree = SOURCE_ROOT; };
 		F49C44A90B12D91500A02F06 /* zkChildRelationship.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = zkChildRelationship.m; path = ../sforce/zkChildRelationship.m; sourceTree = SOURCE_ROOT; };
 		F49C44AA0B12D91500A02F06 /* zkDescribeField.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = zkDescribeField.h; path = ../sforce/zkDescribeField.h; sourceTree = SOURCE_ROOT; };
@@ -193,7 +194,6 @@
 		F49D28040AFD3BC300FF13EA /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		F4B79A3E0E0C7F2600DFD7E4 /* CenteredTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteredTextFieldCell.h; sourceTree = "<group>"; };
 		F4B79A3F0E0C7F2600DFD7E4 /* CenteredTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteredTextFieldCell.m; sourceTree = "<group>"; };
-		F4CEA9B80A9EDA3900B04BD0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		F4DD01420AA69C5C0033BB4B /* TaskMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskMapper.h; sourceTree = "<group>"; };
 		F4DD01430AA69C5C0033BB4B /* TaskMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskMapper.m; sourceTree = "<group>"; };
 		F4E7C0580AE5E1960013BA0A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		29B97314FDCFA39411CA2CEA /* sfCubed */ = {
 			isa = PBXGroup;
 			children = (
-				F4CEA9B80A9EDA3900B04BD0 /* readme.txt */,
+				F49280381356AD3B001D289F /* readme.md */,
 				F465A55F0AAFD4CA004AC796 /* FieldMappers */,
 				F4139D4D0B3A36A90064489A /* Object Mappers */,
 				F44424A80D5FFF5B000B3C7D /* Sync Driver */,
@@ -483,7 +483,6 @@
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				F49120A30A978E1E007F6F32 /* ClientDescription.plist in Resources */,
-				F4CEA9B90A9EDA3900B04BD0 /* readme.txt in Resources */,
 				F40D1D160AA775E200F41D87 /* sf.icns in Resources */,
 				F49D28050AFD3BC300FF13EA /* Credits.html in Resources */,
 				F467A0D70AFD757300F0C9E8 /* sf3_64.png in Resources */,
@@ -492,6 +491,7 @@
 				F42A02AF0B58A9F600C8D9D5 /* plus-8.png in Resources */,
 				F40B3A5C0C4B27B40014E88C /* Login.nib in Resources */,
 				F48183630E00CF9F008A0797 /* protect.nib in Resources */,
+				F49280391356AD3B001D289F /* readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
