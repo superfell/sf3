@@ -21,11 +21,11 @@ Mappers				- the set of entities to sync/map
 
 							
 The code in the project is grouped as follows
-- common			- shared code between many of my OSX/Salesforce.com projects, for SF3 this is mainly about login & keychain management.
-- FieldMappers	- FieldMappingInfo and all its entity specific sub classes
-- Object Mappers  - BaseMapper, plus the entity specific sub classes and some related peices
-- Classes			- grab bag of random stuff to organize, SFCubed is the primary entry point.
-- Sforce Api		- set of classes for interacting with the Salesforce.com Web Services API.
+- common:	shared code between many of my OSX/Salesforce.com projects, for SF3 this is mainly about login & keychain management.
+- FieldMappers: FieldMappingInfo and all its entity specific sub classes
+- Object Mappers: BaseMapper, plus the entity specific sub classes and some related peices
+- Classes: grab bag of random stuff to organize, SFCubed is the primary entry point.
+- Sforce Api: set of classes for interacting with the Salesforce.com Web Services API.
 
 
 
