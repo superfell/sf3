@@ -13,11 +13,12 @@ while in Salesforce.com, its an entirly flat model. Most of the problems come in
 
 
 The actual data model mapping is built up in layers
-Mappers				- the set of entities to sync/map
-	BaseMapper		- each entity to sync/map is represented by a sub class of base mapper
-		FieldMappingInfo	- each data point in the entity is mapped using a FieldMappingInfo (or subclass of)
-							- some fields, particularly in contacts are managed "by hand" with code directly at
-							- the entity mapping level.
+
+- Mappers			- the set of entities to sync/map
+- BaseMapper		- each entity to sync/map is represented by a sub class of base mapper
+- FieldMappingInfo	- each data point in the entity is mapped using a FieldMappingInfo (or subclass of)
+							some fields, particularly in contacts are managed "by hand" with code directly at
+							the entity mapping level.
 
 							
 The code in the project is grouped as follows
