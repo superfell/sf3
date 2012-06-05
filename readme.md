@@ -5,6 +5,7 @@ SF3 is an OSX application that uses Apple's Sync Services to synchronized contac
 SF3 requires OSX 10.6 and a Salesforce.com account
 
 
+**Note:** Given the death bed status of the underlying Sync Services API, I'm not planning to do anymore work on this project.
 
 
 Most of the complexity in this project is handling data model mismatches between the 2 data models, for tasks & events there are minor differences, however
